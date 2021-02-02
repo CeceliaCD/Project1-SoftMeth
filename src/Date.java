@@ -39,6 +39,9 @@ public class Date {
 		Integer inputdy;
 		Integer inputyr;
 		int oldestPublishedyr = 1900;
+		public static final int quad = 4;
+		public static final int cent = 100;
+		public static final int quater = 400;
 		Date published = new Date();
 		
 		StringTokenizer str = new StringTokenizer(published.date, "/");
@@ -47,48 +50,48 @@ public class Date {
 		while(str.hasMoreTokens()) {
 			inputmnth = Integer.parseInt(str.nextToken().trim());
 			if(inputmnth > cal.get(Calendar.MONTH+1)) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 			
 			inputdy = Integer.parseInt(str.nextToken().trim());
 			if(inputdy > cal.get(Calendar.DAY_OF_MONTH)) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 			
 			inputyr = Integer.parseInt(str.nextToken().trim());
 			if(inputyr < oldestPublishedyr || inputyr > cal.get(Calendar.YEAR)) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 		}
 		
 		
-		boolean leapyr = (inputyr / 4 == 0) ? true : false;
-		leapyr = (inputyr/100 == 0) ? true : false;
-		leapyr = (inputyr/400 == 0) ? true : false;
+		boolean leapyr = (inputyr / quad == 0) ? true : false;
+		leapyr = (inputyr/cent == 0) ? true : false;
+		leapyr = (inputyr/quater == 0) ? true : false;
 		
 		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
 		while(inputmnth == 1 || inputmnth == 3 || inputmnth == 5 || inputmnth == 7 
 				|| inputmnth == 8 || inputmnth == 10 || inputmnth == 12) {
 			if(inputdy < 1 || inputdy > 31) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 		}
 		
 		while(inputmnth == 4 || inputmnth == 6 || inputmnth == 9 || inputmnth == 11) {
 			if(inputdy < 1 || inputdy > 30) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 		}
 		
 		while(!leapyr && inputmnth == 2) {
 			if(inputdy < 1 || inputdy > 28) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 		}
 		
 		while(leapyr && inputmnth == 2) {
 			if(inputdy < 1 || inputdy > 29) {
-				System.console().writer().println("Invalid Date!");
+				return false;
 			}
 		}
 		
@@ -104,6 +107,10 @@ public class Date {
 		// TODO Auto-generated method stub
 		String published = new String("01/31/2020");
 		isValid(published);
+		
+		if() {
+		System.console().writer().println("Invalid Date!");
+		}
 
 	}
 
