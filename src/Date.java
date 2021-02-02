@@ -19,18 +19,17 @@ public class Date {
 		Integer dy = new Integer(day);
 		Integer yr = new Integer(year);
 		
-		this.date = Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr);	
+		date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));	
 	} 
 	
 	//return today’s date
 	public Date() { 
-		//issue with the getInstance method, maybe Calendar import is not being recognized
+	
 		Calendar cal = Calendar.getInstance();
 		System.console().writer().println(cal.getTime());
 		
 	} 
 	
-	//Question: Is a date that is formatted like mm/d/yyyy and m/dd/yyyy invalid?
 	public boolean isValid() { 
 		
 		Calendar cal = Calendar.getInstance();
@@ -39,15 +38,16 @@ public class Date {
 		Integer inputdy;
 		Integer inputyr;
 		int oldestPublishedyr = 1900;
-		public static final int quad = 4;
-		public static final int cent = 100;
-		public static final int quater = 400;
+		final int quad = 4;
+		final int cent = 100;
+		final int quater = 400;
 		Date published = new Date();
 		
-		StringTokenizer str = new StringTokenizer(published.date, "/");
+		StringTokenizer str = new StringTokenizer(published, "/");
 		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 		while(str.hasMoreTokens()) {
+			
 			inputmnth = Integer.parseInt(str.nextToken().trim());
 			if(inputmnth > cal.get(Calendar.MONTH+1)) {
 				return false;
@@ -105,11 +105,13 @@ public class Date {
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String published = new String("01/31/2020");
-		isValid(published);
+		Date date1 = new Date("01/31/2020");
+		Boolean bool1 = date1.isValid();
 		
-		if() {
-		System.console().writer().println("Invalid Date!");
+		if(bool1) {
+			System.console().writer().println(date1);
+		}else {
+			System.console().writer().println("Invalid Date!");
 		}
 
 	}
