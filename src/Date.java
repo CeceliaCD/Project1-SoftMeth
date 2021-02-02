@@ -38,6 +38,7 @@ public class Date {
 		Integer inputmnth;
 		Integer inputdy;
 		Integer inputyr;
+		int oldestPublishedyr = 1900;
 		Date published = new Date();
 		
 		StringTokenizer str = new StringTokenizer(published.date, "/");
@@ -55,7 +56,7 @@ public class Date {
 			}
 			
 			inputyr = Integer.parseInt(str.nextToken().trim());
-			if(inputyr < 1900 || inputyr > cal.get(Calendar.YEAR)) {
+			if(inputyr < oldestPublishedyr || inputyr > cal.get(Calendar.YEAR)) {
 				System.console().writer().println("Invalid Date!");
 			}
 		}
