@@ -49,7 +49,7 @@ public class Date {
 		while(str.hasMoreTokens()) {
 			
 			inputmnth = Integer.parseInt(str.nextToken().trim());
-			if(inputmnth > cal.get(Calendar.MONTH+1)) {
+			if(inputmnth > cal.get(Calendar.MONTH + 1)) {
 				return false;
 			}
 			
@@ -70,27 +70,29 @@ public class Date {
 		leapyr = (inputyr/quater == 0) ? true : false;
 		
 		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
-		while(inputmnth == 1 || inputmnth == 3 || inputmnth == 5 || inputmnth == 7 
-				|| inputmnth == 8 || inputmnth == 10 || inputmnth == 12) {
-			if(inputdy < 1 || inputdy > 31) {
+		while(inputmnth == cal.get(Calendar.JANUARY+1) || inputmnth == cal.get(Calendar.MARCH+1) || inputmnth == cal.get(Calendar.MAY+1) 
+				|| inputmnth == cal.get(Calendar.JULY+1) || inputmnth == cal.get(Calendar.AUGUST+1) || inputmnth == cal.get(Calendar.OCTOBER+1) 
+				|| inputmnth == cal.get(Calendar.DECEMBER+1)) {
+			if(inputdy < cal.getMinimum(Calendar.DAY_OF_MONTH) || inputdy > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(inputmnth == 4 || inputmnth == 6 || inputmnth == 9 || inputmnth == 11) {
-			if(inputdy < 1 || inputdy > 30) {
+		while(inputmnth == cal.get(Calendar.APRIL+1) || inputmnth == cal.get(Calendar.JUNE+1) 
+				|| inputmnth == cal.get(Calendar.SEPTEMBER+1) || inputmnth == cal.get(Calendar.NOVEMBER+1)) {
+			if(inputdy < cal.getMinimum(Calendar.DAY_OF_MONTH) || inputdy > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(!leapyr && inputmnth == 2) {
-			if(inputdy < 1 || inputdy > 28) {
+		while(!leapyr && inputmnth == cal.get(Calendar.FEBRUARY+1)) {
+			if(inputdy < cal.getMinimum(Calendar.DAY_OF_MONTH) || inputdy > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(leapyr && inputmnth == 2) {
-			if(inputdy < 1 || inputdy > 29) {
+		while(leapyr && inputmnth == cal.get(Calendar.FEBRUARY+1)) {
+			if(inputdy < cal.getMinimum(Calendar.DAY_OF_MONTH) || inputdy > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
