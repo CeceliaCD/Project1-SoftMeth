@@ -44,8 +44,26 @@ public class Library {
 			numBooks++;
 		}
 	}
-	public boolean remove(Book book) { }
-	public boolean checkOut(Book book) { }
+	
+	public boolean remove(Book book) { 
+		int serialNum = find(book);
+		Book[] newBooks = (Book[])new Object[books.length-1];
+		
+		for(int i=0, j=0; i < books.length; i++) {
+			if( Integer.parseInt(books[i].getNumber()) == serialNum) {
+				continue;
+			}else {
+				newBooks[j++] = books[i];
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean checkOut(Book book) { 
+		int serialNum = find(book);
+		
+	}
 	public boolean returns(Book book) { }
 	public void print() { } //print the list of books in the bag
 	public void printByDate() { } //print the list of books by datePublished (ascending) public void printByNumber() { } //print the list of books by number (ascending)
