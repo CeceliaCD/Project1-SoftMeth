@@ -13,14 +13,24 @@ public class Date {
 	private int day;
 	
 	
-	//taking mm/dd/yyyy and create a Date object public Date() { } 
+	//taking mm/dd/yyyy and create a Date object 
 	public Date(String date) {
-		Integer mnth = new Integer(month);
-		Integer dy = new Integer(day);
-		Integer yr = new Integer(year);
 		
-		date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));	
+		StringTokenizer st = new StringTokenizer(date, "/");
+		
+		while(st.hasMoreTokens()) {
+			
+			this.month = Integer.parseInt(st.nextToken().trim());
+			
+			this.day = Integer.parseInt(st.nextToken().trim());
+			
+			this.year = Integer.parseInt(st.nextToken().trim());
+		}
+		
+		//date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));	
 	} 
+	
+	
 	
 	//return today’s date
 	public Date() { 
@@ -44,6 +54,7 @@ public class Date {
 		Date published = new Date();
 		
 		StringTokenizer str = new StringTokenizer(published, "/");
+		
 		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 		while(str.hasMoreTokens()) {
