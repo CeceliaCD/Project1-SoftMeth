@@ -9,7 +9,8 @@ public class Library {
 	private int capacity = 4; // is this allowed?
 	
 	public Library() { //default constructor to create an empty bag
-		books = (Book[])new Object[capacity]; // change this number?
+		// books = (Book[])new Object[capacity]; // change this number?
+		books = new Book[0];
 		numBooks = 0;		
 	} 
 	
