@@ -61,11 +61,20 @@ public class Library {
 		return true;
 	}
 	
+	//not sure if I did this method correctly
 	public boolean checkOut(Book book) { 
-		int serialNum = find(book);
+		int isSerialNum = (find(book)!= 0) ? true : false;
+		
+		if(!isSerialNum) {
+			return false;
+		}
+		boolean checkingOut = remove(book);
+		return true;
+	}
+	
+	public boolean returns(Book book) { 
 		
 	}
-	public boolean returns(Book book) { }
 	public void print() { } //print the list of books in the bag
 	public void printByDate() { } //print the list of books by datePublished (ascending) public void printByNumber() { } //print the list of books by number (ascending)
 }
