@@ -71,6 +71,7 @@ public class Library {
 	
 
 	public boolean checkOut(Book book) { 
+		//***Important: might not need this if remove() already calls find()
 		int isSerialNum = (find(book)!= 0) ? find(book) : 0;
 		
 		if(isSerialNum == 0) {
