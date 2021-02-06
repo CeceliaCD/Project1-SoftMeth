@@ -48,7 +48,7 @@ public class Library {
 	
 	public boolean remove(Book book) { 
 		int serialNum = find(book);
-		Book[] newBooks = (Book[])new Object[books.length-1];
+		Book[] newBooks = new Book[books.length-1];
 		
 		for(int i=0, j=0; i < books.length; i++) {
 			if( Integer.parseInt(books[i].getNumber()) == serialNum) {
@@ -63,21 +63,42 @@ public class Library {
 	
 	//not sure if I did this method correctly
 	public boolean checkOut(Book book) { 
-		int isSerialNum = (find(book)!= 0) ? true : false;
+		int isSerialNum = (find(book)!= 0) ? find(book) : 0;
 		
-		if(!isSerialNum) {
+		if(isSerialNum == 0) {
 			return false;
 		}
+		
 		boolean checkingOut = remove(book);
+		if(!checkingOut) {
+			return false;
+		}
 		return true;
 	}
 	
 	public boolean returns(Book book) { 
+		boolean checkedOut = (checkOut(book) == true) ? true : false;
 		
+		if(!checkedOut) {
+			return false;
+		}
+		add(book);
+		return true;
 	}
-	public void print() { } //print the list of books in the bag
-	public void printByDate() { } //print the list of books by datePublished (ascending) 
+	
+	//print the list of books in the bag
+	//Call for the PA command
+	public void print() { 
+		
+	} 
+	
+	//print the list of books by datePublished (ascending)
+	//Call for the PD command
+	public void printByDate() { } 
+	
+	//print the list of books by number (ascending)
+	//Call for the PN command
 	public void printByNumber() { 
 		
-	} //print the list of books by number (ascending)
+	} 
 }

@@ -24,29 +24,25 @@ public class Date {
 		inputdy = Integer.parseInt(dt.nextToken().trim());
 		inputyr = Integer.parseInt(dt.nextToken().trim());
 		
-		this.month = inputmnth;
-		this.day = inputdy;
-		this.year = inputyr;
-		
-		
-		//date = new String(Integer.toString(month) + "/" + Integer.toString(day) + "/" + Integer.toString(year));	
+		month = inputmnth;
+		day = inputdy;
+		year = inputyr;
 	} 
 	
 	
 	//return today’s date
 	public Date() { 
-		//int mnth = 0;
-		//int dy = 0;
-		//int yr = 0;
-		
-		//this.month = mnth;
-		//this.day = dy;
-		//this.year = yr;
+		int mnth = 0;
+		int dy = 0;
+		int yr = 0;
 
-		Calendar cal = Calendar.getInstance();
-		System.out.println(cal.getTime());
+		month = mnth;
+		day = dy;
+		year = yr;
 		
+		String date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));		
 	} 
+	
 	
 	public boolean isValid() { 
 		
@@ -119,6 +115,8 @@ public class Date {
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		System.out.println(cal.getTime());
 		Date date1 = new Date("01/20/2020");
 		Boolean bool1 = date1.isValid();
 		
