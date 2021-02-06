@@ -35,6 +35,13 @@ public class Date {
 	
 	//return today’s date
 	public Date() { 
+		//int mnth = 0;
+		//int dy = 0;
+		//int yr = 0;
+		
+		//this.month = mnth;
+		//this.day = dy;
+		//this.year = yr;
 
 		Calendar cal = Calendar.getInstance();
 		System.out.println(cal.getTime());
@@ -78,26 +85,26 @@ public class Date {
 		while(published.month == cal.get(Calendar.JANUARY+1) || published.month == cal.get(Calendar.MARCH+1) || published.month == cal.get(Calendar.MAY+1) 
 				|| published.month == cal.get(Calendar.JULY+1) || published.month == cal.get(Calendar.AUGUST+1) || published.month == cal.get(Calendar.OCTOBER+1) 
 				|| published.month == cal.get(Calendar.DECEMBER+1)) {
-			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
 		while(published.month == cal.get(Calendar.APRIL+1) || published.month == cal.get(Calendar.JUNE+1) 
 				|| published.month == cal.get(Calendar.SEPTEMBER+1) || published.month == cal.get(Calendar.NOVEMBER+1)) {
-			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
 		while(!leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
 		while(leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
@@ -112,7 +119,7 @@ public class Date {
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Date date1 = new Date("01/31/2020");
+		Date date1 = new Date("01/20/2020");
 		Boolean bool1 = date1.isValid();
 		
 		if(bool1) {
