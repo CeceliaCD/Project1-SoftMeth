@@ -76,5 +76,8 @@ public class Library {
 		
 	}
 	public void print() { } //print the list of books in the bag
-	public void printByDate() { } //print the list of books by datePublished (ascending) public void printByNumber() { } //print the list of books by number (ascending)
+	public void printByDate() { } //print the list of books by datePublished (ascending) 
+	public void printByNumber() { 
+		
+	} //print the list of books by number (ascending)
 }
