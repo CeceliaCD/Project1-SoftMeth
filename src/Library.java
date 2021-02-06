@@ -2,6 +2,9 @@
  * @Nida Ansari
  * @Cecelia Chollette-Dickson
 */
+
+import java.util.StringTokenizer;
+
 public class Library {
 
 	private Book[] books; // array-based implementation of the bag data structure 
@@ -47,7 +50,12 @@ public class Library {
 	}
 	
 	public boolean remove(Book book) { 
+		//checking if book is in our system via serial number
 		int serialNum = find(book);
+		if(serialNum == 0) {
+			return false;
+		}
+
 		Book[] newBooks = new Book[books.length-1];
 		
 		for(int i=0, j=0; i < books.length; i++) {
@@ -61,7 +69,7 @@ public class Library {
 		return true;
 	}
 	
-	//not sure if I did this method correctly
+
 	public boolean checkOut(Book book) { 
 		int isSerialNum = (find(book)!= 0) ? find(book) : 0;
 		
@@ -70,6 +78,10 @@ public class Library {
 		}
 		
 		boolean checkingOut = remove(book);
+		
+		//checking if book's serial number is within system
+		//if not then remove will return false
+		//thus we cannot checkout a book that is not in our system
 		if(!checkingOut) {
 			return false;
 		}
@@ -77,28 +89,58 @@ public class Library {
 	}
 	
 	public boolean returns(Book book) { 
+		//was the book checked out
 		boolean checkedOut = (checkOut(book) == true) ? true : false;
 		
+		//if checkedOut returns false that means user cannot return it
 		if(!checkedOut) {
 			return false;
 		}
+		
+		//Use add() to put book back into array
 		add(book);
 		return true;
 	}
 	
-	//print the list of books in the bag
+	//trying to access current instance of books array, not sure if I did it correctly
 	//Call for the PA command
-	public void print() { 
-		
+	public void print() {  	//print the list of books in the bag
+		this.books = new Book[numBooks];
 	} 
 	
-	//print the list of books by datePublished (ascending)
+	//Propbably will have to use StringTokenizer, need to finish method
 	//Call for the PD command
-	public void printByDate() { } 
-	
-	//print the list of books by number (ascending)
-	//Call for the PN command
-	public void printByNumber() { 
+	public void printByDate() { 	//print the list of books by datePublished (ascending)
+		Book[] books = new Book[numBooks];
+		Book book;
 		
+		for(int i=0; i < books.length; i++)
+		{
+			for(int j=i+1; j< books.length; j++)
+			{
+				book= books[i].getDatePublished();
+				//if(Integer.parseInt(book))
+			}
+		}
+	} 
+	
+	
+	//Call for the PN command
+	public void printByNumber() { 	//print the list of books by number (ascending)
+		Book[] books = new Book[numBooks];
+		Book holdBook;
+		
+		for(int i=0; i < books.length; i++)
+		{
+			for(int j=i+1; j< books.length; j++) 
+			{
+				if(Integer.parseInt(books[i].getNumber()) > Integer.parseInt(books[j].getNumber()))
+				{	
+					holdBook = books[i];
+					books[i] = books[j];
+					books[j] = holdBook;	
+				}
+			}
+		}
 	} 
 }
