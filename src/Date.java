@@ -15,38 +15,29 @@ public class Date {
 	
 	//taking mm/dd/yyyy and create a Date object 
 	public Date(String date) {
+		int inputmnth = 0;
+		int inputdy = 0;
+		int inputyr = 0;
 		
-		StringTokenizer st = new StringTokenizer(date, "/");
+		StringTokenizer dt = new StringTokenizer(date, "/");
+		inputmnth = Integer.parseInt(dt.nextToken().trim());
+		inputdy = Integer.parseInt(dt.nextToken().trim());
+		inputyr = Integer.parseInt(dt.nextToken().trim());
 		
-		while(st.hasMoreTokens()) {
-			
-			this.month = Integer.parseInt(st.nextToken().trim());
-			
-			this.day = Integer.parseInt(st.nextToken().trim());
-			
-			this.year = Integer.parseInt(st.nextToken().trim());
-		}
+		this.month = inputmnth;
+		this.day = inputdy;
+		this.year = inputyr;
 		
-		//date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));	
+		
+		//date = new String(Integer.toString(month) + "/" + Integer.toString(day) + "/" + Integer.toString(year));	
 	} 
-	
-	public getYear() {
-		return year;
-	}
-	
-	public getMonth() {
-		return month;
-	}
-	
-	public getDay() {
-		return day;
-	}
 	
 	
 	//return today’s date
 	public Date() { 
+
 		Calendar cal = Calendar.getInstance();
-		System.console().writer().println(cal.getTime());
+		System.out.println(cal.getTime());
 		
 	} 
 	
@@ -59,53 +50,54 @@ public class Date {
 		final int quad = 4;
 		final int cent = 100;
 		final int quater = 400;
+		 
 		Date published = new Date();
 		
 		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(published.getMonth() > cal.get(Calendar.MONTH + 1)) {
+		if(published.month > cal.get(Calendar.MONTH + 1)) {
 			return false;
 		}
 			
-		if(published.getDay() > cal.get(Calendar.DAY_OF_MONTH)) {
+		if(published.day > cal.get(Calendar.DAY_OF_MONTH)) {
 			return false;
 		}
 			
-		if(published.getYear() < oldestPublishedyr || published.getYear() > cal.get(Calendar.YEAR)) {
+		if(published.year < oldestPublishedyr || published.year > cal.get(Calendar.YEAR)) {
 			return false;
 		}
 	
 		
 		
-		boolean leapyr = (published.getYear()/quad == 0) ? true : false;
-		leapyr = (published.getYear()/cent == 0) ? true : false;
-		leapyr = (published.getYear()/quater == 0) ? true : false;
+		boolean leapyr = (published.year/quad == 0) ? true : false;
+		leapyr = (published.year/cent == 0) ? true : false;
+		leapyr = (published.year/quater == 0) ? true : false;
 		
 		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
-		while(published.getMonth() == cal.get(Calendar.JANUARY+1) || published.getMonth() == cal.get(Calendar.MARCH+1) || published.getMonth() == cal.get(Calendar.MAY+1) 
-				|| published.getMonth() == cal.get(Calendar.JULY+1) || published.getMonth() == cal.get(Calendar.AUGUST+1) || published.getMonth() == cal.get(Calendar.OCTOBER+1) 
-				|| published.getMonth() == cal.get(Calendar.DECEMBER+1)) {
-			if(published.getDay() < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.getDay() > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+		while(published.month == cal.get(Calendar.JANUARY+1) || published.month == cal.get(Calendar.MARCH+1) || published.month == cal.get(Calendar.MAY+1) 
+				|| published.month == cal.get(Calendar.JULY+1) || published.month == cal.get(Calendar.AUGUST+1) || published.month == cal.get(Calendar.OCTOBER+1) 
+				|| published.month == cal.get(Calendar.DECEMBER+1)) {
+			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(published.getMonth() == cal.get(Calendar.APRIL+1) || published.getMonth() == cal.get(Calendar.JUNE+1) 
-				|| published.getMonth() == cal.get(Calendar.SEPTEMBER+1) || published.getMonth() == cal.get(Calendar.NOVEMBER+1)) {
-			if(published.getDay() < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.getDay() > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+		while(published.month == cal.get(Calendar.APRIL+1) || published.month == cal.get(Calendar.JUNE+1) 
+				|| published.month == cal.get(Calendar.SEPTEMBER+1) || published.month == cal.get(Calendar.NOVEMBER+1)) {
+			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(!leapyr && published.getMonth() == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.getDay() < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.getDay() > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+		while(!leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
+			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(leapyr && published.getMonth() == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.getDay() < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.getDay() > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
+		while(leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
+			if(published.day < cal.getMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
@@ -124,9 +116,9 @@ public class Date {
 		Boolean bool1 = date1.isValid();
 		
 		if(bool1) {
-			System.console().writer().println(date1);
+			System.out.println(date1);
 		}else {
-			System.console().writer().println("Invalid Date!");
+			System.out.println("Invalid Date!");
 		}
 
 	}
