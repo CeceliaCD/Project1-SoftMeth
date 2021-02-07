@@ -71,12 +71,6 @@ public class Library {
 	
 
 	public boolean checkOut(Book book) { 
-		//***Important: might not need this if remove() already calls find()
-		int isSerialNum = (find(book)!= 0) ? find(book) : 0;
-		
-		if(isSerialNum == 0) {
-			return false;
-		}
 		
 		boolean checkingOut = remove(book);
 		
@@ -114,21 +108,24 @@ public class Library {
 	public void printByDate() { 	//print the list of books by datePublished (ascending)
 		this.books = new Book[numBooks];
 		Book holdBook;
-		String serialNum1;
-		String serialNum2;
+		Date date1 = new Date();
+		Date date2 = new Date();
 		
 		for(int i=0; i < books.length; i++)
 		{
 			for(int j=i+1; j< books.length; j++)
 			{
-				serialNum1= books[i].getDatePublished();
-				serialNum2= books[j].getDatePublished();
-				StringTokenizer dtStr1 = new StringTokenizer(serialNum1, "/");
+				date1= books[i].getDatePublished();
+				date2= books[j].getDatePublished();
+				
+				//String dt1
+				//String dt2
+				StringTokenizer dtStr1 = new StringTokenizer(date1.toString(), "/");
 				int month1 = Integer.parseInt(dtStr1.nextToken().trim());
 				int day1 = Integer.parseInt(dtStr1.nextToken().trim());
 				int year1 = Integer.parseInt(dtStr1.nextToken().trim());
 				
-				StringTokenizer dtStr2 = new StringTokenizer(serialNum2, "/");
+				StringTokenizer dtStr2 = new StringTokenizer(date2.toString(), "/");
 				int month2 = Integer.parseInt(dtStr2.nextToken().trim());
 				int day2 = Integer.parseInt(dtStr2.nextToken().trim());
 				int year2 = Integer.parseInt(dtStr2.nextToken().trim());

@@ -42,10 +42,6 @@ public class Date {
 		String date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));		
 	} 
 	
-	/*public void sortByDate() {
-		
-	}*/
-	
 	
 	public boolean isValid() { 
 		
