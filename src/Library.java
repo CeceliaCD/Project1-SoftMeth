@@ -112,15 +112,34 @@ public class Library {
 	//Propbably will have to use StringTokenizer, need to finish method
 	//Call for the PD command
 	public void printByDate() { 	//print the list of books by datePublished (ascending)
-		Book[] books = new Book[numBooks];
-		Book book;
+		this.books = new Book[numBooks];
+		Book holdBook;
+		String serialNum1;
+		String serialNum2;
 		
 		for(int i=0; i < books.length; i++)
 		{
 			for(int j=i+1; j< books.length; j++)
 			{
-				book= books[i].getDatePublished();
-				//if(Integer.parseInt(book))
+				serialNum1= books[i].getDatePublished();
+				serialNum2= books[j].getDatePublished();
+				StringTokenizer dtStr1 = new StringTokenizer(serialNum1, "/");
+				int month1 = Integer.parseInt(dtStr.nextToken().trim());
+				int day1 = Integer.parseInt(dtStr.nextToken().trim());
+				int year1 = Integer.parseInt(dtStr.nextToken().trim());
+				
+				StringTokenizer dtStr2 = new StringTokenizer(serialNum2, "/");
+				int month2 = Integer.parseInt(dtStr.nextToken().trim());
+				int day2 = Integer.parseInt(dtStr.nextToken().trim());
+				int year2 = Integer.parseInt(dtStr.nextToken().trim());
+				
+				//still need to check if the condition in this if statement will check for all possible cases
+				if((month1 > month2 && year1 >= year2) || (day1 > day2 && year1 >= year2) || year1 > year2) 
+				{
+					holdBook = books[i];
+					books[i] = books[j];
+					books[j] = holdBook;
+				}
 			}
 		}
 	} 
@@ -128,7 +147,7 @@ public class Library {
 	
 	//Call for the PN command
 	public void printByNumber() { 	//print the list of books by number (ascending)
-		Book[] books = new Book[numBooks];
+		this.books = new Book[numBooks];
 		Book holdBook;
 		
 		for(int i=0; i < books.length; i++)

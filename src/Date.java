@@ -29,7 +29,6 @@ public class Date {
 		year = inputyr;
 	} 
 	
-	
 	//return today’s date
 	public Date() { 
 		int mnth = 0;
@@ -42,6 +41,10 @@ public class Date {
 		
 		String date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));		
 	} 
+	
+	/*public void sortByDate() {
+		
+	}*/
 	
 	
 	public boolean isValid() { 
@@ -107,6 +110,7 @@ public class Date {
 		
 		return true;	
 	}
+	
 	
 	//testbed main
 	/*You MUST design the test cases to thoroughly test the isValid() method. 
