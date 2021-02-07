@@ -124,14 +124,14 @@ public class Library {
 				serialNum1= books[i].getDatePublished();
 				serialNum2= books[j].getDatePublished();
 				StringTokenizer dtStr1 = new StringTokenizer(serialNum1, "/");
-				int month1 = Integer.parseInt(dtStr.nextToken().trim());
-				int day1 = Integer.parseInt(dtStr.nextToken().trim());
-				int year1 = Integer.parseInt(dtStr.nextToken().trim());
+				int month1 = Integer.parseInt(dtStr1.nextToken().trim());
+				int day1 = Integer.parseInt(dtStr1.nextToken().trim());
+				int year1 = Integer.parseInt(dtStr1.nextToken().trim());
 				
 				StringTokenizer dtStr2 = new StringTokenizer(serialNum2, "/");
-				int month2 = Integer.parseInt(dtStr.nextToken().trim());
-				int day2 = Integer.parseInt(dtStr.nextToken().trim());
-				int year2 = Integer.parseInt(dtStr.nextToken().trim());
+				int month2 = Integer.parseInt(dtStr2.nextToken().trim());
+				int day2 = Integer.parseInt(dtStr2.nextToken().trim());
+				int year2 = Integer.parseInt(dtStr2.nextToken().trim());
 				
 				//still need to check if the condition in this if statement will check for all possible cases
 				if((month1 > month2 && year1 >= year2) || (day1 > day2 && year1 >= year2) || year1 > year2) 
