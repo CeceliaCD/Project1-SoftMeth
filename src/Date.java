@@ -24,85 +24,91 @@ public class Date {
 		inputdy = Integer.parseInt(dt.nextToken().trim());
 		inputyr = Integer.parseInt(dt.nextToken().trim());
 		
-		month = inputmnth;
-		day = inputdy;
-		year = inputyr;
+		this.month = inputmnth;
+		this.day = inputdy;
+		this.year = inputyr;
 	} 
 	
 	//return today’s date
 	public Date() { 
-		int mnth = 0;
-		int dy = 0;
-		int yr = 0;
-
-		month = mnth;
-		day = dy;
-		year = yr;
+		Calendar cal = Calendar.getInstance();
 		
-		String date = new String(Integer.toString(mnth) + "/" + Integer.toString(dy) + "/" + Integer.toString(yr));		
+		year = cal.get(Calendar.YEAR);
+		month = cal.get(Calendar.MONTH) + 1;
+		day = cal.get(Calendar.DAY_OF_MONTH);
 	} 
 	
+	public int getMonth() {
+		return month;
+	}
+	
+	public int getDay() {
+		return day;
+	}
+	
+	public int getYear() {
+		return year;
+	}
 	
 	public boolean isValid() { 
 		
 		Calendar cal = Calendar.getInstance();
-		
 		
 		int oldestPublishedyr = 1900;
 		final int quad = 4;
 		final int cent = 100;
 		final int quater = 400;
 		 
-		Date published = new Date();
+		Date currDate = new Date();
 		
 		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(published.month > cal.get(Calendar.MONTH + 1)) {
+		if(currDate.month > cal.get(Calendar.MONTH+1)) {
 			return false;
 		}
 			
-		if(published.day > cal.get(Calendar.DAY_OF_MONTH)) {
+		if(currDate.day > cal.get(Calendar.DAY_OF_MONTH)) {
 			return false;
 		}
 			
-		if(published.year < oldestPublishedyr || published.year > cal.get(Calendar.YEAR)) {
+		if(currDate.year < oldestPublishedyr || currDate.year > cal.get(Calendar.YEAR)) {
 			return false;
 		}
 	
 		
-		
-		boolean leapyr = (published.year/quad == 0) ? true : false;
-		leapyr = (published.year/cent == 0) ? true : false;
-		leapyr = (published.year/quater == 0) ? true : false;
+		boolean leapyr = (currDate.year/quad == 0) ? true : false;
+		leapyr = (currDate.year/cent == 0) ? true : false;
+		leapyr = (currDate.year/quater == 0) ? true : false;
 		
 		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
-		while(published.month == cal.get(Calendar.JANUARY+1) || published.month == cal.get(Calendar.MARCH+1) || published.month == cal.get(Calendar.MAY+1) 
-				|| published.month == cal.get(Calendar.JULY+1) || published.month == cal.get(Calendar.AUGUST+1) || published.month == cal.get(Calendar.OCTOBER+1) 
-				|| published.month == cal.get(Calendar.DECEMBER+1)) {
-			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		while(currDate.month == cal.get(Calendar.JANUARY+1) || currDate.month == cal.get(Calendar.MARCH+1) || currDate.month == cal.get(Calendar.MAY+1) 
+				|| currDate.month == cal.get(Calendar.JULY+1) || currDate.month == cal.get(Calendar.AUGUST+1) || currDate.month == cal.get(Calendar.OCTOBER+1) 
+				|| currDate.month == cal.get(Calendar.DECEMBER+1)) {
+			if(currDate.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || currDate.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(published.month == cal.get(Calendar.APRIL+1) || published.month == cal.get(Calendar.JUNE+1) 
-				|| published.month == cal.get(Calendar.SEPTEMBER+1) || published.month == cal.get(Calendar.NOVEMBER+1)) {
-			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		while(currDate.month == cal.get(Calendar.APRIL+1) || currDate.month == cal.get(Calendar.JUNE+1) 
+				|| currDate.month == cal.get(Calendar.SEPTEMBER+1) || currDate.month == cal.get(Calendar.NOVEMBER+1)) {
+			if(currDate.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || currDate.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(!leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		while(!leapyr && currDate.month == cal.get(Calendar.FEBRUARY+1)) {
+			if(currDate.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || currDate.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
 		
-		while(leapyr && published.month == cal.get(Calendar.FEBRUARY+1)) {
-			if(published.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || published.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		while(leapyr && currDate.month == cal.get(Calendar.FEBRUARY+1)) {
+			if(currDate.day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || currDate.day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 				return false;
 			}
 		}
+		
 		
 		return true;	
 	}
@@ -115,13 +121,14 @@ public class Date {
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Calendar cal = Calendar.getInstance();
-		System.out.println(cal.getTime());
 		Date date1 = new Date("01/20/2020");
+		date1.getMonth();
+		date1.getDay();
+		date1.getYear();
 		Boolean bool1 = date1.isValid();
 		
 		if(bool1) {
-			System.out.println(date1);
+			System.out.println(date1.isValid());
 		}else {
 			System.out.println("Invalid Date!");
 		}
