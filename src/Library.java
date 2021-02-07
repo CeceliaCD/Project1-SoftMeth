@@ -32,22 +32,39 @@ public class Library {
 		//Book[] a = new Book[1];
 		//int i = 0;		
 		Book[] temp = new Book[books.length + 4];
-		for (int i = 0; i < temp.length; i++) { // temp length or books length? revist
+		for (int i = 0; i < books.length; i++) { // temp length or books length? revist
 			temp[i] = books[i];
 		}
 		books = temp;
 	} 
 	
 	public void add(Book book) { 
-		if ((books.length%capacity) == 0) { // fix this part?
+		int bookNum = 10001;	
+		if (books.length == numBooks) { // fix this part? maybe if books.length == numBooks
 			grow();
-			add(book);
 		}
-		else { // generate random number here
-			books[books.length] = book;
-			numBooks++;
+		//if (books[] == null) {
+		//	books[0] == 
+		//}
+		if (books[0] == null) { // CHANGE THIS!!!!
+			books[0] = book;
+			//String num1 = ;		
+			books[0].setNumber(String.valueOf(bookNum));
+			numBooks++;// what???			
 		}
-	}
+		
+		for (int i = 0; i < books.length; i++) {
+			if (books[i] != null) {
+				continue;
+			}
+			//bookNum++;
+			if (books[i] == null) {
+				//bookNum++;
+				books[i] = book;
+				books[i].setNumber(String.valueOf(10002));
+				numBooks++;
+			}
+		}
 	
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number

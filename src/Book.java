@@ -51,28 +51,19 @@ public class Book {
 		this.datePublished = datePublished;
 	}		
 
-// method to generate 5-digital serial number (do we need this in here?)
-	/* public int numGenerator () {
-		 int bookNum = 10001 + new Random().nextInt(90000);
-		// add something about not having 2 of the same serial number?
-		num = String.valueOf(bookNum);
-		return num; 
-		return 10001; // change this
-		}
-*/
-
 	// returns true if the serial numbers for the 2 book objects are the same.
 	@Override
-	public boolean equals(Object obj){ // FIX THIS!!!!
+	public boolean equals(Object obj){
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null || obj instanceof Book) {
+		if (!(obj instanceof Book)) {
 			return false;
 		}
-		//Book book = (Book)obj;
-		//return number.equals(obj.number);
-		//return number == obj.number;
+		Book objBook = (Book) obj;
+		if (this.number.equals(objBook.number)) {
+			return true;
+		}
 		return false;
 	}
 
