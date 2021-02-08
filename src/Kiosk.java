@@ -42,6 +42,7 @@ public class Kiosk {
 				serialNum = input.nextLine();
 				theBook.setNumber(serialNum);
 				
+				lib.remove(theBook);
 				//hopefully doesn't give prob for calling class, since under same package
 				if(lib.remove(theBook)) {
 					System.out.printf("Book#%s %s\n", serialNum, "removed.");
@@ -54,6 +55,7 @@ public class Kiosk {
 				serialNum = input.nextLine();
 				theBook.setNumber(serialNum);
 				
+				lib.checkOut(theBook);
 				if(lib.checkOut(theBook)) {
 					System.out.printf("You’ve checked out Book#%s %s\n", serialNum, ". Enjoy!");
 				}else {
@@ -65,6 +67,7 @@ public class Kiosk {
 				serialNum = input.nextLine();
 				theBook.setNumber(serialNum);
 				
+				lib.returns(theBook);
 				if(lib.returns(theBook)) {
 					System.out.printf("Book#  %s %s\n", serialNum, "return has completed. Thanks!");
 				}else {
@@ -75,46 +78,48 @@ public class Kiosk {
 			if (choice.equals("PA")) {
 				books = new Book[numBooks];
 				
-				if(lib.print()) {
+				lib.print();
 					
-					System.out.println("**List of books in the library.");
-					for(int i=0; i < books.length; i++) {
-						System.out.println(books[i]);
-					}
-					System.out.println("**End of list");
-				}else {
-					System.out.println("Library catalog is empty!");
+				System.out.println("**List of books in the library.");
+				for(int i=0; i < books.length; i++) {
+					System.out.println(books[i]);
 				}
+				System.out.println("**End of list");
+				
+				//When there's no books in the array
+				System.out.println("Library catalog is empty!");
 			}
 			
 			if (choice.equals("PD")) {
 				books = new Book[numBooks];
 				
-				if(lib.printByDate()) {
-					
-					System.out.println("**List of books by the dates published.");
-					for(int j=0; j < books.length; j++) {
-						System.out.println(books[j]);
-					}
-					System.out.println("**End of list");
-				}else {
-					System.out.println("Bookshelf is empty!");
+				lib.printByDate();
+				
+				System.out.println("**List of books by the dates published.");
+				for(int j=0; j < books.length; j++) {
+					System.out.println(books[j]);
 				}
+				System.out.println("**End of list");
+				
+				//When there's no books in the array
+				System.out.println("Bookshelf is empty!");
+				
 			}
 			
 			if (choice.equals("PN")) {
 				books = new Book[numBooks];
 				
-				if(lib.printByNumber()) {
+				lib.printByNumber();
 					
-					System.out.println("**List of books by the book numbers.");
-					for(int k=0; k < books.length; k++) {
-						System.out.println(books[k]);
-					}
-					System.out.println("**End of list");
-				}else {
-					System.out.println("Bookshelf is empty!");
+				System.out.println("**List of books by the book numbers.");
+				for(int k=0; k < books.length; k++) {
+					System.out.println(books[k]);
 				}
+				System.out.println("**End of list");
+				
+				//When there's no books in the array
+				System.out.println("Bookshelf is empty!");
+			
 			}
 			
 			if (firstChar == 'Q') {
