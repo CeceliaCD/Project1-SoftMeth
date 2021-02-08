@@ -114,13 +114,13 @@ public class Library {
 		return true;
 	}
 	
-	//trying to access current instance of books array, not sure if I did it correctly
+	
 	//Call for the PA command
 	public void print() {  	//print the list of books in the bag
 		this.books = new Book[numBooks];
 	} 
 	
-	//Propbably will have to use StringTokenizer, need to finish method
+	
 	//Call for the PD command
 	public void printByDate() { 	//print the list of books by datePublished (ascending)
 		this.books = new Book[numBooks];

@@ -64,11 +64,17 @@ public class Date {
 		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(month > currDate.month) { return false; }
+		if(month > currDate.month) { 
+			return false; 
+		}
 			
-		if(day > currDate.day) { return false; }
+		if(day > currDate.day) { 
+			return false; 
+		}
 			
-		if(year < oldestPublishedyr || year > currDate.year) { return false; }
+		if(year < oldestPublishedyr || year > currDate.year) { 
+			return false; 
+		}
 	
 		
 		boolean leapyr = (year/quad == 0) ? true : false;
