@@ -134,10 +134,12 @@ public class Library {
 		//checking if book's serial number is within system
 		//if not then remove will return false
 		//thus we cannot checkout a book that is not in our system
-		if(!checkingOut) 
+		if(checkingOut == false) 
 		{
+			book.setCheckedOut(false);
 			return false;
 		}
+		book.setCheckedOut(true);
 		return true;
 	}
 	
@@ -152,10 +154,13 @@ public class Library {
 		//if checkedOut returns false that means user cannot return it
 		if(checkedOut == false) 
 		{
+			book.setCheckedOut(false);
 			return false;
 		}
+		book.setCheckedOut(true);
 
 		add(book);
+		book.setCheckedOut(false);
 		return true;
 	}
 	
