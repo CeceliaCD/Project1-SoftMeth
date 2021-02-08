@@ -11,9 +11,9 @@ public class Kiosk {
 	public void run() { 
 		
 		Scanner input = new Scanner(System.in);
-		private Book[] books;
-		private int numBooks; //don't know if needed 
-		private Book theBook;
+		Book[] books;
+		int numBooks; //don't know if needed 
+		Book theBook;
 	
 		while (true) {
 			
@@ -27,16 +27,16 @@ public class Kiosk {
 			//String name = split[1].setName();
 			
 			// all the if statements have a phrase to output rn, i was just testing!
-			if (firstChar == 'A') {
+			//if (firstChar == 'A') {
 				//addBook();
-			}
+			//}
 			
 			if (firstChar == 'R') { 
 				serialNum = input.nextLine();
 				theBook = new Book(serialNum);
 				
 				//hopefully doesn't give prob for calling class, since under same package
-				if(library.remove(theBook)) {
+				if(lib.remove(theBook)) {
 					System.out.printf("Book#%s %s\n", serialNum, "removed.");
 				}else {
 					System.out.println("Unable to remove, the library does not have this book.");
@@ -47,7 +47,7 @@ public class Kiosk {
 				serialNum = input.nextLine();
 				theBook = new Book(serialNum);
 				
-				if(library.checkOut(theBook)) {
+				if(lib.checkOut(theBook)) {
 					System.out.printf("You’ve checked out Book#%s %s\n", serialNum, ". Enjoy!");
 				}else {
 					System.out.printf("Book#%s %s\n", serialNum, "is not available.");
@@ -58,7 +58,7 @@ public class Kiosk {
 				serialNum = input.nextLine();
 				theBook = new Book(serialNum);
 				
-				if(library.returns(theBook)) {
+				if(lib.returns(theBook)) {
 					System.out.printf("Book#  %s %s\n", serialNum, "return has completed. Thanks!");
 				}else {
 					System.out.println("Unable to return Book#" + serialNum + ".");
@@ -68,7 +68,7 @@ public class Kiosk {
 			if (choice.equals("PA")) {
 				books = new Book[numBooks];
 				
-				if(library.print()) {
+				if(lib.print()) {
 					
 					System.out.println("**List of books in the library.");
 					for(int i=0; i < books.length; i++) {
@@ -79,11 +79,29 @@ public class Kiosk {
 			}
 			
 			if (choice.equals("PD")) {
-				//dateAscOrder();
+				books = new Book[numBooks];
+				
+				if(lib.printByDate()) {
+					
+					System.out.println("**List of books by the dates published.");
+					for(int j=0; j < books.length; j++) {
+						System.out.println(books[j]);
+					}
+					System.out.println("**End of list");
+				}
 			}
 			
 			if (choice.equals("PN")) {
-				//bookAscOrder();
+				books = new Book[numBooks];
+				
+				if(lib.printByNumber()) {
+					
+					System.out.println("**List of books by the book numbers.");
+					for(int k=0; k < books.length; k++) {
+						System.out.println(books[k]);
+					}
+					System.out.println("**End of list");
+				}
 			}
 			
 			if (firstChar == 'Q') {
