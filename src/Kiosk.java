@@ -27,13 +27,13 @@ public class Kiosk {
 			//String name = split[1].setName();
 			
 			// all the if statements have a phrase to output rn, i was just testing!
-			//if (firstChar == 'A') {
+			if (firstChar == 'A') {
 				//addBook();
-			//}
+			}
 			
 			if (firstChar == 'R') { 
 				serialNum = input.nextLine();
-				theBook = new Book(serialNum);
+				theBook.setNumber(serialNum);
 				
 				//hopefully doesn't give prob for calling class, since under same package
 				if(lib.remove(theBook)) {
@@ -45,7 +45,7 @@ public class Kiosk {
 			
 			if (firstChar == 'O') {
 				serialNum = input.nextLine();
-				theBook = new Book(serialNum);
+				theBook.setNumber(serialNum);
 				
 				if(lib.checkOut(theBook)) {
 					System.out.printf("You’ve checked out Book#%s %s\n", serialNum, ". Enjoy!");
@@ -56,7 +56,7 @@ public class Kiosk {
 			
 			if (firstChar == 'I') {
 				serialNum = input.nextLine();
-				theBook = new Book(serialNum);
+				theBook.setNumber(serialNum);
 				
 				if(lib.returns(theBook)) {
 					System.out.printf("Book#  %s %s\n", serialNum, "return has completed. Thanks!");
