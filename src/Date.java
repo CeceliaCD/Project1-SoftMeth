@@ -55,17 +55,17 @@ public class Date {
 		
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(month > currDate.month) 
+		if(month > currDate.getMonth() && year == currDate.getYear()) 
 		{ 
 			return false; 
 		}
 			
-		if(day > currDate.day) 
+		if(day > currDate.getDay() && year == currDate.getYear()) 
 		{ 
 			return false; 
 		}
 			
-		if(year < oldestPublishedyr || year > currDate.year) 
+		if(year < oldestPublishedyr || year > currDate.getYear()) 
 		{ 
 			return false; 
 		}
@@ -80,6 +80,7 @@ public class Date {
 			{
 				return false;
 			}
+		
 		}
 		
 		if(month == cal.get(Calendar.APRIL+1) || month == cal.get(Calendar.JUNE+1) 
@@ -89,6 +90,7 @@ public class Date {
 			{
 				return false;
 			}
+			
 		}
 		
 		boolean leapyr = (year/quad == 0) ? true : false;
@@ -102,6 +104,7 @@ public class Date {
 			{
 				return false;
 			}
+		
 		}
 		
 		
@@ -111,9 +114,9 @@ public class Date {
 			{
 				return false;
 			}
+		
 		}
 		
-	
 		return true;	
 	}
 	
@@ -128,7 +131,7 @@ public class Date {
 		Date todaysDate = new Date();
 		System.out.println("This is today's date: " + todaysDate.getMonth() + "/" + todaysDate.getDay() + "/" + todaysDate.getYear());
 		
-		Date date1 = new Date("2/12/2019");
+		Date date1 = new Date("10/12/1999");
 		Boolean bool1 = date1.isValid();
 		
 		if(bool1 == true) {
