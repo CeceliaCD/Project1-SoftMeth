@@ -82,6 +82,8 @@ public class Kiosk {
 						System.out.println(books[i]);
 					}
 					System.out.println("**End of list");
+				}else {
+					System.out.println("Library catalog is empty!");
 				}
 			}
 			
@@ -95,6 +97,8 @@ public class Kiosk {
 						System.out.println(books[j]);
 					}
 					System.out.println("**End of list");
+				}else {
+					System.out.println("Bookshelf is empty!");
 				}
 			}
 			
@@ -108,6 +112,8 @@ public class Kiosk {
 						System.out.println(books[k]);
 					}
 					System.out.println("**End of list");
+				}else {
+					System.out.println("Bookshelf is empty!");
 				}
 			}
 			
