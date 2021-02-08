@@ -105,7 +105,7 @@ public class Library {
 			return false;
 		}
 
-		Book[] newBooks = new Book[books.length-1];
+		Book[] newBooks = new Book[books.length];
 		
 		for(int i=0, j=0; i < books.length; i++) 
 		{
