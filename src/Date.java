@@ -15,18 +15,11 @@ public class Date {
 	
 	//taking mm/dd/yyyy and create a Date object 
 	public Date(String date) {
-		int inputmnth = 0;
-		int inputdy = 0;
-		int inputyr = 0;
-		
 		StringTokenizer dt = new StringTokenizer(date, "/");
-		inputmnth = Integer.parseInt(dt.nextToken().trim());
-		inputdy = Integer.parseInt(dt.nextToken().trim());
-		inputyr = Integer.parseInt(dt.nextToken().trim());
 		
-		this.month = inputmnth;
-		this.day = inputdy;
-		this.year = inputyr;
+		month = Integer.parseInt(dt.nextToken().trim());
+		day = Integer.parseInt(dt.nextToken().trim());
+		year = Integer.parseInt(dt.nextToken().trim());
 	} 
 	
 	//return today’s date
@@ -53,7 +46,6 @@ public class Date {
 	public boolean isValid() { 
 		
 		Calendar cal = Calendar.getInstance();
-		
 		int oldestPublishedyr = 1900;
 		final int quad = 4;
 		final int cent = 100;
@@ -61,50 +53,62 @@ public class Date {
 		 
 		Date currDate = new Date();
 		
-		//Don't know if the way I printed will be acceptable for Professor Chang
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(month > currDate.month) { 
+		if(month > currDate.month) 
+		{ 
 			return false; 
 		}
 			
-		if(day > currDate.day) { 
+		if(day > currDate.day) 
+		{ 
 			return false; 
 		}
 			
-		if(year < oldestPublishedyr || year > currDate.year) { 
+		if(year < oldestPublishedyr || year > currDate.year) 
+		{ 
 			return false; 
 		}
 	
 		
-		boolean leapyr = (year/quad == 0) ? true : false;
-		leapyr = (year/cent == 0) ? true : false;
-		leapyr = (year/quater == 0) ? true : false;
-		
 		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
 		if(month == cal.get(Calendar.JANUARY+1) || month == cal.get(Calendar.MARCH+1) || month == cal.get(Calendar.MAY+1) 
 				|| month == cal.get(Calendar.JULY+1) || month == cal.get(Calendar.AUGUST+1) || month == cal.get(Calendar.OCTOBER+1) 
-				|| month == cal.get(Calendar.DECEMBER+1)) {
-			if(day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+				|| month == cal.get(Calendar.DECEMBER+1)) 
+		{
+			if(day < cal.getMinimum(Calendar.DAY_OF_MONTH) || day > cal.getMaximum(Calendar.DAY_OF_MONTH)) 
+			{
 				return false;
 			}
 		}
 		
 		if(month == cal.get(Calendar.APRIL+1) || month == cal.get(Calendar.JUNE+1) 
-				|| month == cal.get(Calendar.SEPTEMBER+1) || month == cal.get(Calendar.NOVEMBER+1)) {
-			if(day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+				|| month == cal.get(Calendar.SEPTEMBER+1) || month == cal.get(Calendar.NOVEMBER+1)) 
+		{
+			if(day < cal.getMinimum(Calendar.DAY_OF_MONTH) || day > cal.getMaximum(Calendar.DAY_OF_MONTH)) 
+			{
 				return false;
 			}
 		}
 		
-		if(!leapyr && month == cal.get(Calendar.FEBRUARY+1)) {
-			if(day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		boolean leapyr = (year/quad == 0) ? true : false;
+		leapyr = (year/cent == 0) ? true : false;
+		leapyr = (year/quater == 0) ? true : false;
+		
+		
+		if(leapyr == false && month == cal.get(Calendar.FEBRUARY+1)) 
+		{
+			if(day < cal.getMinimum(Calendar.DAY_OF_MONTH) || day > cal.getMaximum(Calendar.DAY_OF_MONTH)) 
+			{
 				return false;
 			}
 		}
 		
-		if(leapyr && month == cal.get(Calendar.FEBRUARY+1)) {
-			if(day < cal.getActualMinimum(Calendar.DAY_OF_MONTH) || day > cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		
+		if(leapyr == true && month == cal.get(Calendar.FEBRUARY+1)) 
+		{
+			if(day < cal.getMinimum(Calendar.DAY_OF_MONTH) || day > cal.getMaximum(Calendar.DAY_OF_MONTH)) 
+			{
 				return false;
 			}
 		}
@@ -121,11 +125,13 @@ public class Date {
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Date date1 = new Date("01/20/2021");
+		Date todaysDate = new Date();
+		System.out.println("This is today's date: " + todaysDate.getMonth() + "/" + todaysDate.getDay() + "/" + todaysDate.getYear());
 		
+		Date date1 = new Date("2/12/2019");
 		Boolean bool1 = date1.isValid();
 		
-		if(!bool1) {
+		if(bool1 == true) {
 			System.out.println(date1.getMonth() + "/" + date1.getDay() + "/" + date1.getYear());
 		}else {
 			System.out.println("Invalid Date!");

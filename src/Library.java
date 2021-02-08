@@ -19,8 +19,10 @@ public class Library {
 	
 	private int find(Book book) { // helper method to find a book in the bag			
 		int serialNum = 0; // change this?
-		for (int i = 0; i < books.length; i++) {
-			if (books[i].equals(book)) {
+		for (int i = 0; i < books.length; i++) 
+		{
+			if (books[i].equals(book)) 
+			{
 				serialNum = Integer.parseInt(books[i].getNumber()); // different way to convert string to int?
 				return serialNum;
 			}
@@ -32,7 +34,8 @@ public class Library {
 		//Book[] a = new Book[1];
 		//int i = 0;		
 		Book[] temp = new Book[books.length + 4];
-		for (int i = 0; i < books.length; i++) { // temp length or books length? revist
+		for (int i = 0; i < books.length; i++) 
+		{ 
 			temp[i] = books[i];
 		}
 		books = temp;
@@ -70,13 +73,15 @@ public class Library {
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
 		int serialNum = find(book);
-		if(serialNum == 0) {
+		if(serialNum == 0) 
+		{
 			return false;
 		}
 
 		Book[] newBooks = new Book[books.length-1];
 		
-		for(int i=0, j=0; i < books.length; i++) {
+		for(int i=0, j=0; i < books.length; i++) 
+		{
 			if( Integer.parseInt(books[i].getNumber()) == serialNum) {
 				continue;
 			}else {
@@ -95,7 +100,8 @@ public class Library {
 		//checking if book's serial number is within system
 		//if not then remove will return false
 		//thus we cannot checkout a book that is not in our system
-		if(!checkingOut) {
+		if(!checkingOut) 
+		{
 			return false;
 		}
 		return true;
@@ -106,7 +112,8 @@ public class Library {
 		boolean checkedOut = (checkOut(book) == true) ? true : false;
 		
 		//if checkedOut returns false that means user cannot return it
-		if(!checkedOut) {
+		if(!checkedOut) 
+		{
 			return false;
 		}
 		
