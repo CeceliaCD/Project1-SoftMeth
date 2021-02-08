@@ -199,7 +199,8 @@ public class Library {
 				int year2 = Integer.parseInt(dtStr2.nextToken().trim());
 				
 
-				if((month1 > month2 && year1 >= year2) || (month1 == month2 && day1 > day2 && year1 >= year2) || year1 > year2) 
+				if((month1 > month2 && year1 >= year2) || (month1 == month2 && day1 > day2 && year1 >= year2) 
+						|| (month1 == month2 && day1 == day2 && year1 > year2)) 
 				{
 					holdBook = books[i];
 					books[i] = books[j];
