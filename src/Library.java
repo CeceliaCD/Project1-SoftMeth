@@ -1,8 +1,14 @@
-/*
+/**
+ * The library class consists of methods that are called
+ * within other methods and also methods that commit the action
+ * that matches the user's command. This class allows the user
+ * to add books to a library, find books in a library via their serial
+ * number, increase the library's size, remove books from the library,
+ * checkout books from the library, return books, and print out the current
+ * list of books in the library in the order they came, by day or by serial number.
  * @Nida Ansari
  * @Cecelia Chollette-Dickson
 */
-
 import java.util.StringTokenizer;
 
 public class Library {
@@ -11,13 +17,19 @@ public class Library {
 	private int numBooks; // the number of books currently in the bag
 	private int capacity = 4; // is this allowed?
 	
-	public Library() { //default constructor to create an empty bag
+	/*
+	 * The default constructor called to create an empty book array (a.k.a. library).
+	 */
+	public Library() { 
 		// books = (Book[])new Object[capacity]; // change this number?
 		books = new Book[0];
 		numBooks = 0;		
 	} 
 	
-	private int find(Book book) { // helper method to find a book in the bag			
+	/*
+	 * A helper method to find a book within the book array.
+	 */
+	private int find(Book book) { 			
 		int serialNum = 0; // change this?
 		for (int i = 0; i < books.length; i++) 
 		{
@@ -30,7 +42,10 @@ public class Library {
 		return serialNum; // change this?
 	} 
 	
-	private void grow() { // helper method to grow the capacity by 4
+	/*
+	 * A helper method that helps grow the book array by a capacity of 4.
+	 */
+	private void grow() { 
 		//Book[] a = new Book[1];
 		//int i = 0;		
 		Book[] temp = new Book[books.length + 4];
@@ -41,6 +56,10 @@ public class Library {
 		books = temp;
 	} 
 	
+	/*
+	 * This method allows users to add books into our book array
+	 * and also gives that book a serial number of 10001 or greater.
+	 */
 	public void add(Book book) { 
 		int bookNum = 10001;	
 		if (books.length == numBooks) { // fix this part? maybe if books.length == numBooks
@@ -70,6 +89,11 @@ public class Library {
 		}
 	}
 	
+	/*
+	 * This method permanently removes a book from our book array.
+	 * If a book has already been removed from the library, it cannot be
+	 * removed again.
+	 */
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
 		int serialNum = find(book);
@@ -92,7 +116,13 @@ public class Library {
 		return true;
 	}
 	
-
+	/*
+	 * This method allows users to check out a book. It is
+	 * similar to remove in the sense that only a book that was added
+	 * in the library can be taken and also once a book is taken, it 
+	 * cannot be taken again. However, once it is returned it can be 
+	 * taken.
+	 */
 	public boolean checkOut(Book book) { 
 		
 		boolean checkingOut = remove(book);
@@ -107,30 +137,41 @@ public class Library {
 		return true;
 	}
 	
+	/*
+	 * Allows the user to return a book after they have checked it out.
+	 * Similar to add, and actually calls add to have book back in
+	 * the library.
+	 */
 	public boolean returns(Book book) { 
-		//was the book checked out
 		boolean checkedOut = (checkOut(book) == true) ? true : false;
 		
 		//if checkedOut returns false that means user cannot return it
-		if(!checkedOut) 
+		if(checkedOut == false) 
 		{
 			return false;
 		}
-		
-		//Use add() to put book back into array
+
 		add(book);
 		return true;
 	}
 	
 	
-	//Call for the PA command
+	/*
+	 * This method allows the user, once the PA command is
+	 * called through Kiosk, to print the library's contents
+	 * in the order they were placed.
+	 */
 	public void print() {  	//print the list of books in the bag
 		this.books = new Book[numBooks];
 	} 
 	
 	
-	//Call for the PD command
-	public void printByDate() { 	//print the list of books by datePublished (ascending)
+	/*
+	 * This method allows the user, once the PD command is called 
+	 * through Kiosk, to print the library's books by date (datePublished)
+	 * in ascending order.
+	 */
+	public void printByDate() { 	
 		this.books = new Book[numBooks];
 		Book holdBook;
 		Date date1 = new Date();
@@ -143,8 +184,6 @@ public class Library {
 				date1= books[i].getDatePublished();
 				date2= books[j].getDatePublished();
 				
-				//String dt1
-				//String dt2
 				StringTokenizer dtStr1 = new StringTokenizer(date1.toString(), "/");
 				int month1 = Integer.parseInt(dtStr1.nextToken().trim());
 				int day1 = Integer.parseInt(dtStr1.nextToken().trim());
@@ -155,8 +194,8 @@ public class Library {
 				int day2 = Integer.parseInt(dtStr2.nextToken().trim());
 				int year2 = Integer.parseInt(dtStr2.nextToken().trim());
 				
-				//still need to check if the condition in this if statement will check for all possible cases
-				if((month1 > month2 && year1 >= year2) || (day1 > day2 && year1 >= year2) || year1 > year2) 
+
+				if((month1 > month2 && year1 >= year2) || (month1 == month2 && day1 > day2 && year1 >= year2) || year1 > year2) 
 				{
 					holdBook = books[i];
 					books[i] = books[j];
@@ -167,8 +206,12 @@ public class Library {
 	} 
 	
 	
-	//Call for the PN command
-	public void printByNumber() { 	//print the list of books by number (ascending)
+	/*
+	 * This method allows the user, once the PN command is called
+	 * through Kiosk, to print the library's books by their serial
+	 * numbers in ascending order.
+	 */
+	public void printByNumber() { 
 		this.books = new Book[numBooks];
 		Book holdBook;
 		

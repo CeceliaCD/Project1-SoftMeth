@@ -1,8 +1,10 @@
-/*
+/**
+ * The date class helps with verifying that 
+ * a given date is accurate (not too old and not an
+ * impossibly made up one).
  * @Nida Ansari
  * @Cecelia Chollette-Dickson
 */
-
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
@@ -13,7 +15,10 @@ public class Date {
 	private int day;
 	
 	
-	//taking mm/dd/yyyy and create a Date object 
+	/*
+	 * This method is taking mm/dd/yyyy and creates a Date object
+	 * that the user can input in a similar format. 
+	 */
 	public Date(String date) {
 		StringTokenizer dt = new StringTokenizer(date, "/");
 		
@@ -22,7 +27,12 @@ public class Date {
 		year = Integer.parseInt(dt.nextToken().trim());
 	} 
 	
-	//return today’s date
+	/*
+	 * This constructor returns today’s date and also
+	 * helps with checking if the given published date of 
+	 * a book is sny later than the current (which shouldn't
+	 * be possible).
+	 */
 	public Date() { 
 		Calendar cal = Calendar.getInstance();
 		
@@ -31,18 +41,36 @@ public class Date {
 		day = cal.get(Calendar.DAY_OF_MONTH);
 	} 
 	
+	/*
+	 * Our getter method to help obtain the int value
+	 * that represents a date's month.
+	 */
 	public int getMonth() {
 		return month;
 	}
 	
+	/*
+	 * Our getter method that helps obtain the int
+	 * value that represents a date's day.
+	 */
 	public int getDay() {
 		return day;
 	}
 	
+	/*
+	 * Our getter method that helps obtain the int
+	 * value that represents a date's year.
+	 */
 	public int getYear() {
 		return year;
 	}
 	
+	/*
+	 * This method is used to help verify that the date given,
+	 * which is representing when a book was published, is not
+	 * imaginary/impossible or even older than books published 
+	 * in 1900.
+	 */
 	public boolean isValid() { 
 		
 		Calendar cal = Calendar.getInstance();
@@ -50,11 +78,12 @@ public class Date {
 		final int quad = 4;
 		final int cent = 100;
 		final int quater = 400;
-		 
+		
+		//gives us the current date
 		Date currDate = new Date();
 		
-		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
-			
+		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0
+		//thus I added plus 1 for month numeric values	
 		if((month > currDate.getMonth() || month > Calendar.MONTH+1) && year == currDate.getYear()) 
 		{ 
 			return false; 
@@ -123,10 +152,11 @@ public class Date {
 	}
 	
 	
-	//testbed main
-	/*You MUST design the test cases to thoroughly test the isValid() method. 
-	 * You must write a testbed main and implement the test cases. You must follow the instructions
-	 * in the “Test Specification” section of the Software Development Ground Rules.
+
+	/* We designed the test cases to thoroughly test 
+	 * the isValid() method in this testbed main. 
+	 * The Test Specifications document will exlpain
+	 * the purpose of each test case.
 	 */ 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -1,13 +1,20 @@
-/*
+/**
+ * The Kiosk class is for processing the command lines from the console.
  * @Nida Ansari
  * @Cecelia Chollette-Dickson
 */
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//Can use System.out in this class
 public class Kiosk {
 
+	/*
+	 * The run method is responsible for obtaining the
+	 * input that the user gives in as a string and breaking
+	 * it apart. First the command is obtain and based on that
+	 * input, whatever other input that should follow it to
+	 * discern the correct ouptut.
+	 */
 	public void run() { 
 		
 		Scanner input = new Scanner(System.in);

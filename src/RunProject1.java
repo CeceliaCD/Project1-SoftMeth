@@ -1,4 +1,7 @@
-/*
+/**
+ * The RunProject1 class is a driver class
+ * to run our Project1.The main method will
+ * call the run() method in the Kiosk class.
  * @Nida Ansari
  * @Cecelia Chollette-Dickson
 */
