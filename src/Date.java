@@ -55,12 +55,14 @@ public class Date {
 		
 		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0 thus I added plus 1 for month numeric values
 			
-		if(month > currDate.getMonth() && year == currDate.getYear()) 
+		if((month > currDate.getMonth() || month > Calendar.MONTH+1) && year == currDate.getYear()) 
 		{ 
 			return false; 
+		}else if(month > Calendar.DECEMBER+1 && year < currDate.getYear()) {
+			return false;
 		}
 			
-		if(day > currDate.getDay() && year == currDate.getYear()) 
+		if((day > currDate.getDay() || day > cal.get(Calendar.DAY_OF_MONTH)) && year == currDate.getYear()) 
 		{ 
 			return false; 
 		}
@@ -133,13 +135,67 @@ public class Date {
 		
 		Date date1 = new Date("10/12/1999");
 		Boolean bool1 = date1.isValid();
-		
 		if(bool1 == true) {
 			System.out.println(date1.getMonth() + "/" + date1.getDay() + "/" + date1.getYear());
 		}else {
 			System.out.println("Invalid Date!");
 		}
+		
+		Date date2 = new Date("03/10/2022"); 
+		Boolean bool2 = date2.isValid();
+		if(bool2 == true) {
+			System.out.println(date2.getMonth() + "/" + date2.getDay() + "/" + date2.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
 
+		Date date3 = new Date("02/29/2020");
+		Boolean bool3 = date3.isValid();
+		if(bool3 == true) {
+			System.out.println(date3.getMonth() + "/" + date3.getDay() + "/" + date3.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
+		
+		Date date4 = new Date("31/2/2000");
+		Boolean bool4 = date4.isValid();
+		if(bool4 == true) {
+			System.out.println(date4.getMonth() + "/" + date4.getDay() + "/" + date4.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
+		
+		Date date5 = new Date("31/31/2021");
+		Boolean bool5 = date5.isValid();
+		if(bool5 == true) {
+			System.out.println(date5.getMonth() + "/" + date5.getDay() + "/" + date5.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
+		
+		Date date6 = new Date("3/31/1800");
+		Boolean bool6 = date6.isValid();
+		if(bool6 == true) {
+			System.out.println(date6.getMonth() + "/" + date6.getDay() + "/" + date6.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
+		
+		Date date7 = new Date("01/31/1900");
+		Boolean bool7 = date7.isValid();
+		if(bool7 == true) {
+			System.out.println(date7.getMonth() + "/" + date7.getDay() + "/" + date7.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
+		
+		Date date8 = new Date("02/09/2021");
+		Boolean bool8 = date8.isValid();
+		if(bool8 == true) {
+			System.out.println(date8.getMonth() + "/" + date8.getDay() + "/" + date8.getYear());
+		}else {
+			System.out.println("Invalid Date!");
+		}
 	}
 
 }
