@@ -59,6 +59,8 @@ public class Library {
 	/*
 	 * This method allows users to add books into our book array
 	 * and also gives that book a serial number of 10001 or greater.
+	 * It also increments the variable that represents the number of
+	 * books in our array.
 	 */
 	public void add(Book book) { 
 		int bookNum = 10001;	
@@ -92,7 +94,8 @@ public class Library {
 	/*
 	 * This method permanently removes a book from our book array.
 	 * If a book has already been removed from the library, it cannot be
-	 * removed again.
+	 * removed again. It also decrements the variable representing
+	 * the number of books contained in the array.
 	 */
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
@@ -110,6 +113,7 @@ public class Library {
 				continue;
 			}else {
 				newBooks[j++] = books[i];
+				numBooks--;
 				return false;
 			}
 		}
