@@ -65,6 +65,7 @@ public class Library {
 				numBooks++;
 			}
 		}
+	}
 	
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
