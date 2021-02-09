@@ -113,8 +113,9 @@ public class Library {
 	  similar to remove in the sense that only a book that was added
 	  in the library can be taken and also once a book is taken, it 
 	  cannot be taken again. However, once it is returned it can be 
-	  taken.  Returns boolean to indicate if a book object has or has 
-	  not been checked out from the library.
+	  taken.  
+	  @param Book object whose status we must change to not available
+	  @return boolean true if not yet checked out, false otherwise
 	 */
 	public boolean checkOut(Book book) { 
 		int serialNumber = find(book);
@@ -130,8 +131,9 @@ public class Library {
 	/**
 	  Allows the user to return a book after they have checked it out.
 	  Similar to add, and actually calls add to have book back in
-	  the library. Returns boolean to indicate if a book object has 
-	  or has not been returned to the library.
+	  the library. 
+	  @param Book object whose status we want to change to is available
+	  @return boolean true if it is being returned, false if it is still available
 	 */
 	public boolean returns(Book book) { 
 		int serialNumber = find(book);

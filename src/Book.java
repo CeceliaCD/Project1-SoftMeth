@@ -17,6 +17,7 @@ public class Book {
 	
 	/**
 	  Getter method to obtain a book's serial number.
+	  @return the serial number of a book
 	 */
 	public String getNumber() {
 		return number;
@@ -24,6 +25,7 @@ public class Book {
 	
 	/**
 	  Getter method to obtain a book's title.
+	  @return the title of a book
 	 */
 	public String getName() {
 		return name;
@@ -32,6 +34,7 @@ public class Book {
 	/**
 	  Getter method to obtain a book's status of which
 	  it has either been checked out or not.
+	  @return the status of whether a book is available or not
 	 */
 	public boolean getCheckedOut() {
 		return checkedOut;
@@ -40,6 +43,7 @@ public class Book {
 	/**
 	  Getter method to  obtain the date in which a book
 	  has been published.
+	  @return the date a book was publushed of type Date
 	 */
 	public Date getDatePublished() {
 		return datePublished;
@@ -48,6 +52,7 @@ public class Book {
 	/**
 	  Setter method to assign the serial number 
 	  for a book.
+	  @param a string number to be given to a book object
 	 */
 	public void setNumber(String num) {
 		this.number = num;
@@ -56,6 +61,7 @@ public class Book {
 	/**
 	  Setter method to give the book object
 	  its title.
+	  @param a title to be given to a book object
 	 */
 	public void setName(String title) {
 		this.name = title;
@@ -64,6 +70,7 @@ public class Book {
 	/**
 	  Setter method to assign the status of whether
 	  a book is checked out or not.
+	  @param the boolean status of whether a book will be available or not
 	 */
 	public void setCheckedOut(boolean checkout) {
 		this.checkedOut = checkout;
@@ -72,6 +79,7 @@ public class Book {
 	/**
 	  Setter method to assign a book object's 
 	  published date.
+	  @param the date in which a given book was published
 	 */
 	public void setDatePublished(Date datePub) {
 		this.datePublished = datePub;
@@ -82,6 +90,8 @@ public class Book {
 	  for the 2 book objects are the same. The parameter
 	  of type object compares the object to instances
 	  of books to verify that they are type Book object.
+	  @param the object obj checks if our object is of type Book
+	  @return true if it is a book variable, false otherwise
 	 */
 	@Override
 	public boolean equals(Object obj){
@@ -101,6 +111,7 @@ public class Book {
 	/**
 	  Gives the book object a format: 
 	  Book#10007::Design Patterns::5/30/1996::is available.
+	  @return the string result of all the variables of the Book object in the array
 	 */
 	@Override
 	public String toString() {

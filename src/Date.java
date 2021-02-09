@@ -44,6 +44,7 @@ public class Date {
 	/**
 	  Our getter method to help obtain the int value
 	  that represents a date's month.
+	  @return the month as an integer
 	 */
 	public int getMonth() {
 		return month;
@@ -52,6 +53,7 @@ public class Date {
 	/**
 	  Our getter method that helps obtain the int
 	  value that represents a date's day.
+	  @return the day as an integer
 	 */
 	public int getDay() {
 		return day;
@@ -60,6 +62,7 @@ public class Date {
 	/**
 	  Our getter method that helps obtain the int
 	  value that represents a date's year.
+	  @return the year as an integer
 	 */
 	public int getYear() {
 		return year;
@@ -71,6 +74,7 @@ public class Date {
 	  imaginary/impossible or even older than books published 
 	  in 1900.Returns a boolean to indicate if the published 
 	  date of a book the user has inputted is valid.
+	  @return boolea true if the date not too old and realistic, false otherwise
 	 */
 	public boolean isValid() { 
 		
@@ -154,6 +158,12 @@ public class Date {
 		return true;	
 	}
 	
+	/**
+	  This method obtains the month, day an year variables of
+	  a date and returns a string variable to be processed and
+	  compared.
+	  @return a string variable of the month, day and year in mm/dd/yyyy format
+	 */
 	public String datetoString() {
 		return  getMonth() + "/" + getDay() + "/" + getYear();
 	}
