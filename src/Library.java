@@ -188,39 +188,49 @@ public class Library {
 			{
 				for(int j=i+1; j< books.length; j++)
 				{
-					String date1= books[i].getDatePublished().datetoString();
-					String date2= books[j].getDatePublished().datetoString();
+					if(books[i] != null && books[j] != null) {
+						String date1= books[i].getDatePublished().datetoString();
+						String date2= books[j].getDatePublished().datetoString();
+						
+						StringTokenizer dtStr1 = new StringTokenizer(date1, "/");
+						int month1 = Integer.parseInt(dtStr1.nextToken().trim());
+						int day1 = Integer.parseInt(dtStr1.nextToken().trim());
+						int year1 = Integer.parseInt(dtStr1.nextToken().trim());
+						
+						StringTokenizer dtStr2 = new StringTokenizer(date2, "/");
+						int month2 = Integer.parseInt(dtStr2.nextToken().trim());
+						int day2 = Integer.parseInt(dtStr2.nextToken().trim());
+						int year2 = Integer.parseInt(dtStr2.nextToken().trim());
 					
-					StringTokenizer dtStr1 = new StringTokenizer(date1, "/");
-					int month1 = Integer.parseInt(dtStr1.nextToken().trim());
-					int day1 = Integer.parseInt(dtStr1.nextToken().trim());
-					int year1 = Integer.parseInt(dtStr1.nextToken().trim());
-					
-					StringTokenizer dtStr2 = new StringTokenizer(date2, "/");
-					int month2 = Integer.parseInt(dtStr2.nextToken().trim());
-					int day2 = Integer.parseInt(dtStr2.nextToken().trim());
-					int year2 = Integer.parseInt(dtStr2.nextToken().trim());
-					
-
-					if(year1 > year2 || (year1 == year2 && month1 > month2) || (year1 == year2 && month1 == month2 && day1 > day2)) 
-					{
-						holdBook = books[i];
-						books[i] = books[j];
-						books[j] = holdBook;
-					}else if(year1 == year2 && month1 == month2 && day1 == day2) {
-						if(books[i].getName().compareTo(books[j].getName()) > 0) 
+						if(year1 > year2 || (year1 == year2 && month1 > month2) || (year1 == year2 && month1 == month2 && day1 > day2)) 
 						{
-							Book temp = books[i];
-							books[i] = books[j];
-							books[j] = temp;
+							
+								holdBook = books[i];
+								books[i] = books[j];
+								books[j] = holdBook;
+						}else if(year1 == year2 && month1 == month2 && day1 == day2) {
+							if(books[i].getName().compareTo(books[j].getName()) > 0) 
+							{
+									Book temp = books[i];
+									books[i] = books[j];
+									books[j] = temp;
+							}
 						}
+					}else if(books[i] == null && books[j] != null) {
+						books[i] = books[j];
+					}else if(books[i] != null && books[j] == null) {
+						continue;
 					}
 				}
 			}
 			
 			System.out.println("**List of books by the dates published.");
 			for(int j=0; j < books.length; j++) {
-				System.out.println(books[j]);
+				if (books[j] != null) 
+				{
+					System.out.println(books[j]);
+				}
+				
 			}
 			System.out.println("**End of list");
 		}else {
@@ -243,18 +253,30 @@ public class Library {
 			{
 				for(int j=i+1; j< books.length; j++) 
 				{
-					if(Integer.parseInt(books[i].getNumber()) > Integer.parseInt(books[j].getNumber()))
-					{	
-						holdBook = books[i];
+					if (books[i] != null && books[j] != null) 
+					{
+						if(Integer.parseInt(books[i].getNumber()) > Integer.parseInt(books[j].getNumber()))
+						{	
+						
+							holdBook = books[i];
+							books[i] = books[j];
+							books[j] = holdBook;	
+						
+						}
+					}else if(books[i] == null && books[j] != null) {
 						books[i] = books[j];
-						books[j] = holdBook;	
+					}else if(books[i] != null && books[j] == null) {
+						continue;
 					}
 				}
 			}
 			
 			System.out.println("**List of books by the book numbers.");
 			for(int k=0; k < books.length; k++) {
-				System.out.println(books[k]);
+				if (books[k] != null) 
+				{
+					System.out.println(books[k]);
+				}
 			}
 			System.out.println("**End of list");
 		}else {
