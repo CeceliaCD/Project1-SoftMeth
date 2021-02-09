@@ -52,20 +52,22 @@ public class Kiosk {
 				}
 				
 			}else if (firstChar == 'R') { 
+				String serialNum = choice.substring(choice.indexOf(',')+1);
+				Book bookRemove = new Book();
+				bookRemove.setNumber(serialNum);
 				try {
-					String serialNum = choice.substring(choice.indexOf(',')+1);
-					Book bookRemove = new Book();
-					bookRemove.setNumber(serialNum);
-					
 					lib.remove(bookRemove);
 					System.out.println("Book#" + serialNum + " removed.");
 					if(lib.remove(bookRemove) == false) {
 						System.out.println("Unable to remove, the library does not have this book.");
 					}
-					
+				
 				}
-				catch(Exception e) {
-					System.out.println("Invalid command!");
+				catch(Exception e) { 
+					
+					if(lib.remove(bookRemove) == false) {
+						System.out.println("Unable to remove, the library does not have this book.");
+					}
 				}
 				
 			}else if (firstChar == 'O') {

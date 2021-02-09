@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 public class Library {
 
-	private Book[] books; // array-based implementation of the bag data structure 
+	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
 	private int capacity = 4; 
 	public static int bookNums = 0;
@@ -31,7 +31,7 @@ public class Library {
 	/**
 	  A helper method to find a book within the book array.
 	 */
-	private int find(Book book) { 			
+	private int find(Book book) { 
 		for (int i = 0; i < books.length; i++) 
 		{
 			if (books[i].getNumber().equals(book.getNumber())) 
@@ -59,6 +59,7 @@ public class Library {
 	  and also gives that book a serial number of 10001 or greater.
 	  It also increments the variable that represents the number of
 	  books in our array.
+	  @param Book object being added into library
 	 */
 	public void add(Book book) { 
 		if (bookNums%capacity == 0 && bookNums > 1) {
@@ -76,24 +77,35 @@ public class Library {
 	  This method permanently removes a book from our book array.
 	  If a book has already been removed from the library, it cannot be
 	  removed again. It also decrements the variable representing
-	  the number of books contained in the array. Returns boolean to
-	  indicate if a book object has or has not been removed from array.
+	  the number of books contained in the array. 
+	  @param Book object being removed from library
+	  @return boolean to true if the book can be removed, false otherwise
 	 */
 	public boolean remove(Book book) { 
-		//checking if book is in our system via serial number
-		int sNum = find(book);
-		if(sNum == -1) 
+		
+		int sNumIndex = find(book); //Integer value of book
+		if(sNumIndex == -1) 
 		{
 			return false;
 		}
 		
-		for(int i = sNum; i < numBooks-1; i++) 
+		if(sNumIndex < books.length) 
 		{
-			books[i] = books[i+1];
+			for(int i = 0; i < numBooks-1; i++) 
+			{
+				if(Integer.parseInt(books[i].getNumber()) == Integer.parseInt(books[sNumIndex].getNumber()))
+				{
+					books[i] = books[i+1];	
+				}	
+			}
+			if(numBooks == books.length)  //should help with null pointer exception error
+			{
+				books[books.length-1] = null;
+			}
+			numBooks--;
+			return true;	
 		}
-		books[numBooks - 1] = null; 
-		numBooks--;
-		return true;
+		return false;	
 	}
 	
 	/**
