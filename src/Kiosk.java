@@ -23,6 +23,7 @@ public class Kiosk {
 		int numBooks; //don't know if needed 
 		Library lib = new Library();
 		String serialNum;
+		Book theBook;
 	
 		while (true) {
 			
@@ -52,11 +53,11 @@ public class Kiosk {
 			
 			if (firstChar == 'R') { 
 				serialNum = input.nextLine();
-				Book book = new Book(serialNum, null, null, null);
+				theBook.setNumber(Integer.parseInt(serialNum));
 				
-				lib.remove(book);
+				lib.remove(theBook);
 				//hopefully doesn't give prob for calling class, since under same package
-				if(lib.remove(book)) {
+				if(lib.remove(theBook)) {
 					System.out.printf("Book#%s %s\n", serialNum, "removed.");
 				}else {
 					System.out.println("Unable to remove, the library does not have this book.");
@@ -65,10 +66,10 @@ public class Kiosk {
 			
 			if (firstChar == 'O') {
 				serialNum = input.nextLine();
-				Book book = new Book(serialNum, null, null, null);
+				theBook.setNumber(Integer.parseInt(serialNum));
 				
-				lib.checkOut(book);
-				if(lib.checkOut(book)) {
+				lib.checkOut(theBook);
+				if(lib.checkOut(theBook)) {
 					System.out.printf("You’ve checked out Book#%s %s\n", serialNum, ". Enjoy!");
 				}else {
 					System.out.printf("Book#%s %s\n", serialNum, "is not available.");
@@ -77,10 +78,10 @@ public class Kiosk {
 			
 			if (firstChar == 'I') {
 				serialNum = input.nextLine();
-				Book book = new Book(serialNum, null, null, null);
+				theBook.setNumber(Integer.parseInt(serialNum));
 				
-				lib.returns(book);
-				if(lib.returns(book)) {
+				lib.returns(theBook);
+				if(lib.returns(theBook)) {
 					System.out.printf("Book#  %s %s\n", serialNum, "return has completed. Thanks!");
 				}else {
 					System.out.println("Unable to return Book#" + serialNum + ".");
@@ -98,7 +99,7 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				if(this.books == null) {
+				if(books == null) {
 					System.out.println("Library catalog is empty!");
 				}
 			}
@@ -114,7 +115,7 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				if(this.books == null) {
+				if(books == null) {
 					System.out.println("Bookshelf is empty!");
 				}
 				
@@ -131,7 +132,7 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				if(this.books == null) {
+				if(books == null) {
 					System.out.println("Bookshelf is empty!");
 				}
 			
