@@ -55,7 +55,16 @@ public class Kiosk {
 				String serialNum = choice.substring(choice.indexOf(',')+1);
 				Book bookRemove = new Book();
 				bookRemove.setNumber(serialNum);
-				try {
+				
+				boolean removed = lib.remove(bookRemove);
+				
+				if (removed == true) {
+					System.out.println("Book#" + serialNum + " removed.");
+				}
+				else {
+					System.out.println("Unable to remove, the library does not have this book.");
+				}
+				/*try {
 					lib.remove(bookRemove);
 					System.out.println("Book#" + serialNum + " removed.");
 					if(lib.remove(bookRemove) == false) {
@@ -68,7 +77,7 @@ public class Kiosk {
 					if(lib.remove(bookRemove) == false) {
 						System.out.println("Unable to remove, the library does not have this book.");
 					}
-				}
+				}*/
 				
 			}else if (firstChar == 'O') {
 				try {
