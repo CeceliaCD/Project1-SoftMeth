@@ -64,20 +64,6 @@ public class Kiosk {
 				else {
 					System.out.println("Unable to remove, the library does not have this book.");
 				}
-				/*try {
-					lib.remove(bookRemove);
-					System.out.println("Book#" + serialNum + " removed.");
-					if(lib.remove(bookRemove) == false) {
-						System.out.println("Unable to remove, the library does not have this book.");
-					}
-				
-				}
-				catch(Exception e) { 
-					
-					if(lib.remove(bookRemove) == false) {
-						System.out.println("Unable to remove, the library does not have this book.");
-					}
-				}*/
 				
 			}else if (firstChar == 'O') {
 				try {
@@ -86,7 +72,7 @@ public class Kiosk {
 					bookCheckout.setNumber(serialNum1);
 					
 					lib.checkOut(bookCheckout);
-					if(lib.checkOut(bookCheckout)) {
+					if(lib.checkOut(bookCheckout) == false) {
 						System.out.println("You’ve checked out Book#" + serialNum1 + ". Enjoy!");
 					}else {
 						System.out.println("Book#" + serialNum1 + " is not available.");
@@ -102,7 +88,7 @@ public class Kiosk {
 					bookReturn.setNumber(serialNum2);
 					
 					lib.returns(bookReturn);
-					if(lib.returns(bookReturn)) {
+					if(lib.returns(bookReturn) == false) {
 						System.out.println("Book#" + serialNum2 + " return has completed. Thanks!");
 					}else {
 						System.out.println("Unable to return Book#" + serialNum2 + ".");
