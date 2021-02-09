@@ -52,7 +52,7 @@ public class Kiosk {
 			
 			if (firstChar == 'R') { 
 				serialNum = input.nextLine();
-				Book theBook = new Book(serialNum, null, null, null);
+				Book book = new Book(serialNum, null, null, null);
 				
 				lib.remove(theBook);
 				//hopefully doesn't give prob for calling class, since under same package
@@ -65,7 +65,7 @@ public class Kiosk {
 			
 			if (firstChar == 'O') {
 				serialNum = input.nextLine();
-				Book theBook = new Book(serialNum, null, null, null);
+				Book book = new Book(serialNum, null, null, null);
 				
 				lib.checkOut(theBook);
 				if(lib.checkOut(theBook)) {
@@ -77,7 +77,7 @@ public class Kiosk {
 			
 			if (firstChar == 'I') {
 				serialNum = input.nextLine();
-				Book theBook = new Book(serialNum, null, null, null);
+				Book Book = new Book(serialNum, null, null, null);
 				
 				lib.returns(theBook);
 				if(lib.returns(theBook)) {
