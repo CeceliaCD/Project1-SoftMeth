@@ -91,9 +91,11 @@ public class Date {
 			return false;
 		}
 			
-		if((day > currDate.getDay() || day > cal.get(Calendar.DAY_OF_MONTH)) && year == currDate.getYear()) 
+		if((day > currDate.getDay() || day > cal.getMaximum(Calendar.DAY_OF_MONTH)) && year == currDate.getYear()) 
 		{ 
 			return false; 
+		}else if(day < cal.getMinimum(Calendar.DAY_OF_MONTH) && year < currDate.getYear()) {
+			return false;
 		}
 			
 		if(year < oldestPublishedyr || year > currDate.getYear()) 
@@ -187,7 +189,7 @@ public class Date {
 			System.out.println("Invalid Date!");
 		}
 		
-		Date date4 = new Date("31/2/2000");
+		Date date4 = new Date("06/0/2000");
 		Boolean bool4 = date4.isValid();
 		if(bool4 == true) {
 			System.out.println(date4.getMonth() + "/" + date4.getDay() + "/" + date4.getYear());
@@ -219,7 +221,7 @@ public class Date {
 			System.out.println("Invalid Date!");
 		}
 		
-		Date date8 = new Date("02/09/2021");
+		Date date8 = new Date("02/35/2021");
 		Boolean bool8 = date8.isValid();
 		if(bool8 == true) {
 			System.out.println(date8.getMonth() + "/" + date8.getDay() + "/" + date8.getYear());
