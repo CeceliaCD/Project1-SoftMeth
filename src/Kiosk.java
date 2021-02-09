@@ -1,20 +1,19 @@
 /**
-  The Kiosk class is for processing the command lines from 
-  the console and giving the required output back to the user.
-  @Nida Ansari
-  @Cecelia Chollette-Dickson
+The Kiosk class is for processing the command lines from 
+the console and giving the required output back to the user.
+@Nida Ansari, Cecelia Chollette-Dickson
 */
 import java.util.Scanner;
 
 public class Kiosk {
 
 	/**
-	  The run method is responsible for obtaining the
-	  input that the user gives in as a string and breaking
-	  it apart. First the command is obtain and based on that
-	  input, whatever other input that should follow it to
-	  discern the correct ouptut.
-	 */
+	The run method is responsible for obtaining the
+	input that the user gives in as a string and breaking
+	it apart. First the command is obtain and based on that
+	input, whatever other input that should follow it to
+	discern the correct ouptut.
+	*/
 	public void run() { 
 		
 		Scanner input = new Scanner(System.in);
@@ -71,8 +70,7 @@ public class Kiosk {
 					Book bookCheckout = new Book();
 					bookCheckout.setNumber(serialNum1);
 					
-					lib.checkOut(bookCheckout);
-					if(lib.checkOut(bookCheckout) == false) {
+					if(lib.checkOut(bookCheckout)) {
 						System.out.println("You’ve checked out Book#" + serialNum1 + ". Enjoy!");
 					}else {
 						System.out.println("Book#" + serialNum1 + " is not available.");
@@ -87,8 +85,7 @@ public class Kiosk {
 					Book bookReturn = new Book();
 					bookReturn.setNumber(serialNum2);
 					
-					lib.returns(bookReturn);
-					if(lib.returns(bookReturn) == false) {
+					if(lib.returns(bookReturn)) {
 						System.out.println("Book#" + serialNum2 + " return has completed. Thanks!");
 					}else {
 						System.out.println("Unable to return Book#" + serialNum2 + ".");

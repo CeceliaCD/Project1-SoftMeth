@@ -1,9 +1,8 @@
 /**
-  The date class helps with verifying that 
-  a given date is accurate (not too old and not an
-  impossibly made up one).
-  @Nida Ansari
-  @Cecelia Chollette-Dickson
+The date class helps with verifying that 
+a given date is accurate (not too old and not an
+impossibly made up one).
+@Nida Ansari, Cecelia Chollette-Dickson
 */
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -16,9 +15,9 @@ public class Date {
 	
 	
 	/**
-	  This method is taking a string in mm/dd/yyyy and creates
-	  a Date object that the user can input in a similar format. 
-	 */
+	This method is taking a string in mm/dd/yyyy and creates
+	a Date object that the user can input in a similar format. 
+	*/
 	public Date(String date) {
 		StringTokenizer dt = new StringTokenizer(date, "/");
 		
@@ -28,11 +27,11 @@ public class Date {
 	} 
 	
 	/**
-	  This constructor returns today’s date and also
-	  helps with checking if the given published date of 
-	  a book is sny later than the current (which shouldn't
-	  be possible).
-	 */
+	This constructor returns today’s date and also
+	helps with checking if the given published date of 
+	a book is sny later than the current (which shouldn't
+	be possible).
+	*/
 	public Date() { 
 		Calendar cal = Calendar.getInstance();
 		
@@ -42,40 +41,40 @@ public class Date {
 	} 
 	
 	/**
-	  Our getter method to help obtain the int value
-	  that represents a date's month.
-	  @return the month as an integer
-	 */
+	Our getter method to help obtain the int value
+	that represents a date's month.
+	@return the month as an integer
+	*/
 	public int getMonth() {
 		return month;
 	}
 	
 	/**
-	  Our getter method that helps obtain the int
-	  value that represents a date's day.
-	  @return the day as an integer
-	 */
+	Our getter method that helps obtain the int
+	value that represents a date's day.
+	@return the day as an integer
+	*/
 	public int getDay() {
 		return day;
 	}
 	
 	/**
-	  Our getter method that helps obtain the int
-	  value that represents a date's year.
-	  @return the year as an integer
-	 */
+	Our getter method that helps obtain the int
+	value that represents a date's year.
+	@return the year as an integer
+	*/
 	public int getYear() {
 		return year;
 	}
 	
 	/**
-	  This method is used to help verify that the date given,
-	  which is representing when a book was published, is not
-	  imaginary/impossible or even older than books published 
-	  in 1900.Returns a boolean to indicate if the published 
-	  date of a book the user has inputted is valid.
-	  @return boolea true if the date not too old and realistic, false otherwise
-	 */
+	This method is used to help verify that the date given,
+	which is representing when a book was published, is not
+	imaginary/impossible or even older than books published 
+	in 1900.Returns a boolean to indicate if the published 
+	date of a book the user has inputted is valid.
+	@return boolea true if the date not too old and realistic, false otherwise
+	*/
 	public boolean isValid() { 
 		
 		Calendar cal = Calendar.getInstance();
@@ -84,11 +83,9 @@ public class Date {
 		final int cent = 100;
 		final int quater = 400;
 		
-		//gives us the current date
-		Date currDate = new Date();
 		
-		//Calendar class uses Gregorian and Julian calendars in which JAN represents 0
-		//thus I added plus 1 for month numeric values	
+		Date currDate = new Date(); //gives us the current date
+			
 		if((month > currDate.getMonth() || month > Calendar.MONTH+1) && year == currDate.getYear()) 
 		{ 
 			return false; 
@@ -108,8 +105,6 @@ public class Date {
 			return false; 
 		}
 	
-		
-		//this was how I kept the days in each month bounded from 1 to whatever the days limit for that month
 		if(month == cal.get(Calendar.JANUARY+1) || month == cal.get(Calendar.MARCH+1) || month == cal.get(Calendar.MAY+1) 
 				|| month == cal.get(Calendar.JULY+1) || month == cal.get(Calendar.AUGUST+1) || month == cal.get(Calendar.OCTOBER+1) 
 				|| month == cal.get(Calendar.DECEMBER+1)) 
@@ -159,27 +154,26 @@ public class Date {
 	}
 	
 	/**
-	  This method obtains the month, day an year variables of
-	  a date and returns a string variable to be processed and
-	  compared.
-	  @return a string variable of the month, day and year in mm/dd/yyyy format
-	 */
+	This method obtains the month, day an year variables of
+	a date and returns a string variable to be processed and
+	compared.
+	@return a string variable of the month, day and year in mm/dd/yyyy format
+	*/
 	public String datetoString() {
 		return  getMonth() + "/" + getDay() + "/" + getYear();
 	}
 	
 
 	/**
-	  We designed the test cases to thoroughly test 
-	  the isValid() method in this testbed main. 
-	  The Test Specifications document will exlpain
-	  the purpose of each test case. Will each date
-	  and its respective boolean, there should either
-	  be an output that prints the given date or prints
-	  the string literal "Invalid Date!"
-	 */ 
+	We designed the test cases to thoroughly test 
+	the isValid() method in this testbed main. 
+	The Test Specifications document will exlpain
+	the purpose of each test case. Will each date
+	and its respective boolean, there should either
+	be an output that prints the given date or prints
+	the string literal "Invalid Date!"
+	*/ 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Date todaysDate = new Date();
 		System.out.println("This is today's date: " + todaysDate.getMonth() + "/" + todaysDate.getDay() + "/" + todaysDate.getYear());
 		
