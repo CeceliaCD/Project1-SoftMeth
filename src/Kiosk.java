@@ -1,33 +1,33 @@
 /**
- * The Kiosk class is for processing the command lines from the console.
- * @Nida Ansari
- * @Cecelia Chollette-Dickson
+  The Kiosk class is for processing the command lines from the console.
+  @Nida Ansari
+  @Cecelia Chollette-Dickson
 */
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Kiosk {
 
-	/*
-	 * The run method is responsible for obtaining the
-	 * input that the user gives in as a string and breaking
-	 * it apart. First the command is obtain and based on that
-	 * input, whatever other input that should follow it to
-	 * discern the correct ouptut.
+	/**
+	  The run method is responsible for obtaining the
+	  input that the user gives in as a string and breaking
+	  it apart. First the command is obtain and based on that
+	  input, whatever other input that should follow it to
+	  discern the correct ouptut.
 	 */
 	public void run() { 
 		
 		Scanner input = new Scanner(System.in);
 		Book[] books;
 		int numBooks; //don't know if needed 
-		Book theBook;
 		Library lib = new Library();
+		String serialNum;
 	
 		while (true) {
 			
 			String choice = input.nextLine();
 			char firstChar = choice.charAt(0);
-			String serialNum;
+			
 	
 			//String delim = ",";
 			//StringTokenizer st = new StringTokenizer(choice, delim);
@@ -51,7 +51,7 @@ public class Kiosk {
 			
 			if (firstChar == 'R') { 
 				serialNum = input.nextLine();
-				theBook.setNumber(serialNum);
+				Book theBook = new Book(serialNum, null, null, null);
 				
 				lib.remove(theBook);
 				//hopefully doesn't give prob for calling class, since under same package
@@ -64,7 +64,7 @@ public class Kiosk {
 			
 			if (firstChar == 'O') {
 				serialNum = input.nextLine();
-				theBook.setNumber(serialNum);
+				Book theBook = new Book(serialNum, null, null, null);
 				
 				lib.checkOut(theBook);
 				if(lib.checkOut(theBook)) {
@@ -76,7 +76,7 @@ public class Kiosk {
 			
 			if (firstChar == 'I') {
 				serialNum = input.nextLine();
-				theBook.setNumber(serialNum);
+				Book theBook = new Book(serialNum, null, null, null);
 				
 				lib.returns(theBook);
 				if(lib.returns(theBook)) {
@@ -97,8 +97,9 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				//When there's no books in the array
-				System.out.println("Library catalog is empty!");
+				if(this.books == null) {
+					System.out.println("Library catalog is empty!");
+				}
 			}
 			
 			if (choice.equals("PD")) {
@@ -112,8 +113,9 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				//When there's no books in the array
-				System.out.println("Bookshelf is empty!");
+				if(this.books == null) {
+					System.out.println("Bookshelf is empty!");
+				}
 				
 			}
 			
@@ -128,8 +130,9 @@ public class Kiosk {
 				}
 				System.out.println("**End of list");
 				
-				//When there's no books in the array
-				System.out.println("Bookshelf is empty!");
+				if(this.books == null) {
+					System.out.println("Bookshelf is empty!");
+				}
 			
 			}
 			

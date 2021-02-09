@@ -1,13 +1,13 @@
 /**
- * The library class consists of methods that are called
- * within other methods and also methods that commit the action
- * that matches the user's command. This class allows the user
- * to add books to a library, find books in a library via their serial
- * number, increase the library's size, remove books from the library,
- * checkout books from the library, return books, and print out the current
- * list of books in the library in the order they came, by day or by serial number.
- * @Nida Ansari
- * @Cecelia Chollette-Dickson
+  The library class consists of methods that are called
+  within other methods and also methods that commit the action
+  that matches the user's command. This class allows the user
+  to add books to a library, find books in a library via their serial
+  number, increase the library's size, remove books from the library,
+  checkout books from the library, return books, and print out the current
+  list of books in the library in the order they came, by day or by serial number.
+  @Nida Ansari
+  @Cecelia Chollette-Dickson
 */
 import java.util.StringTokenizer;
 
@@ -18,16 +18,16 @@ public class Library {
 	private int capacity = 4; 
 	public static int bookNums = 0;
 	
-	/*
-	 * The default constructor called to create an empty book array (a.k.a. library).
+	/**
+	  The default constructor called to create an empty book array (a.k.a. library).
 	 */
 	public Library() { 
 		books = new Book[capacity];
 		numBooks = 0;		
 	} 
 	
-	/*
-	 * A helper method to find a book within the book array.
+	/**
+	  A helper method to find a book within the book array.
 	 */
 	private int find(Book book) { 			
 		int serialNum = 0;
@@ -42,8 +42,8 @@ public class Library {
 		return serialNum;
 	} 
 	
-	/*
-	 * A helper method that helps grow the book array by a capacity of 4.
+	/**
+	  A helper method that helps grow the book array by a capacity of 4.
 	 */
 	private void grow() { 	
 		Book[] temp = new Book[books.length + 4];
@@ -54,11 +54,11 @@ public class Library {
 		books = temp;
 	} 
 	
-	/*
-	 * This method allows users to add books into our book array
-	 * and also gives that book a serial number of 10001 or greater.
-	 * It also increments the variable that represents the number of
-	 * books in our array.
+	/**
+	  This method allows users to add books into our book array
+	  and also gives that book a serial number of 10001 or greater.
+	  It also increments the variable that represents the number of
+	  books in our array.
 	 */
 	public void add(Book book) { 
 		if (bookNums%capacity == 0 && bookNums > 1) {
@@ -71,11 +71,12 @@ public class Library {
 		numBooks = bookNums;
 	}
 	
-	/*
-	 * This method permanently removes a book from our book array.
-	 * If a book has already been removed from the library, it cannot be
-	 * removed again. It also decrements the variable representing
-	 * the number of books contained in the array.
+	/**
+	  This method permanently removes a book from our book array.
+	  If a book has already been removed from the library, it cannot be
+	  removed again. It also decrements the variable representing
+	  the number of books contained in the array. Returns boolean to
+	  indicate if a book object has or has not been removed from array.
 	 */
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
@@ -100,12 +101,13 @@ public class Library {
 		return true;
 	}
 	
-	/*
-	 * This method allows users to check out a book. It is
-	 * similar to remove in the sense that only a book that was added
-	 * in the library can be taken and also once a book is taken, it 
-	 * cannot be taken again. However, once it is returned it can be 
-	 * taken.
+	/**
+	  This method allows users to check out a book. It is
+	  similar to remove in the sense that only a book that was added
+	  in the library can be taken and also once a book is taken, it 
+	  cannot be taken again. However, once it is returned it can be 
+	  taken.  Returns boolean to indicate if a book object has or has 
+	  not been checked out from the library.
 	 */
 	public boolean checkOut(Book book) { 
 		
@@ -123,10 +125,11 @@ public class Library {
 		return true;
 	}
 	
-	/*
-	 * Allows the user to return a book after they have checked it out.
-	 * Similar to add, and actually calls add to have book back in
-	 * the library.
+	/**
+	  Allows the user to return a book after they have checked it out.
+	  Similar to add, and actually calls add to have book back in
+	  the library. Returns boolean to indicate if a book object has 
+	  or has not been returned to the library.
 	 */
 	public boolean returns(Book book) { 
 		boolean checkedOut = (checkOut(book) == true) ? true : false;
@@ -145,20 +148,20 @@ public class Library {
 	}
 	
 	
-	/*
-	 * This method allows the user, once the PA command is
-	 * called through Kiosk, to print the library's contents
-	 * in the order they were placed.
+	/**
+	  This method allows the user, once the PA command is
+	  called through Kiosk, to print the library's contents
+	  in the order they were placed.
 	 */
 	public void print() {  	//print the list of books in the bag
 		this.books = new Book[numBooks];
 	} 
 	
 	
-	/*
-	 * This method allows the user, once the PD command is called 
-	 * through Kiosk, to print the library's books by date (datePublished)
-	 * in ascending order.
+	/**
+	  This method allows the user, once the PD command is called 
+	  through Kiosk, to print the library's books by date (datePublished)
+	  in ascending order.
 	 */
 	public void printByDate() { 	
 		this.books = new Book[numBooks];
@@ -196,10 +199,10 @@ public class Library {
 	} 
 	
 	
-	/*
-	 * This method allows the user, once the PN command is called
-	 * through Kiosk, to print the library's books by their serial
-	 * numbers in ascending order.
+	/**
+	  This method allows the user, once the PN command is called
+	  through Kiosk, to print the library's books by their serial
+	  numbers in ascending order.
 	 */
 	public void printByNumber() { 
 		this.books = new Book[numBooks];

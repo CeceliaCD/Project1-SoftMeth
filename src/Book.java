@@ -1,12 +1,12 @@
 /**
- * The book class is responsible for creating the
- * book object with the variables that consist of 
- * its serial number, name, published date, and if 
- * it is checked out. We also override the string so
- * so that the previously mentioned components are 
- * formatted a certain way when printed.
- * @Nida Ansari
- * @Cecelia Chollette-Dickson
+  The book class is responsible for creating the
+  book object with the variables that consist of 
+  its serial number, name, published date, and if 
+  it is checked out. We also override the string so
+  so that the previously mentioned components are 
+  formatted a certain way when printed.
+  @Nida Ansari
+  @Cecelia Chollette-Dickson
 */
 public class Book {
 
@@ -15,9 +15,12 @@ public class Book {
 	private boolean checkedOut;
 	private Date datePublished;
 
-	/*
-	 * A constructor that helps with giving a book
-	 * object its values.
+	/**
+	  A constructor that helps with giving a book
+	  object its values. As a result when we declare 
+	  a new book object, we can set the book's serial
+	  number, title, whether it has been checked out or not,
+	  and the date in which it was published.
 	 */
 	public Book(String number, String name, boolean checkedOut, Date datePublished) {
 		this.number = number;
@@ -26,71 +29,73 @@ public class Book {
 		this.datePublished = datePublished;
 	}
 	
-	/*
-	 * Getter method to ontain a book's serial number.
+	/**
+	  Getter method to obtain a book's serial number.
 	 */
 	public String getNumber() {
 		return number;
 	}
 	
-	/*
-	 * Getter methos to obtain a book's title.
+	/**
+	  Getter method to obtain a book's title.
 	 */
 	public String getName() {
 		return name;
 	}
 	
-	/*
-	 * Getter method to obtain a book's status of which
-	 * it has either been checked out or not.
+	/**
+	  Getter method to obtain a book's status of which
+	  it has either been checked out or not.
 	 */
 	public boolean getCheckedOut() {
 		return checkedOut;
 	}
 	
-	/*
-	 * Getter method to  obtain the date in which a book
-	 * has been published.
+	/**
+	  Getter method to  obtain the date in which a book
+	  has been published.
 	 */
 	public Date getDatePublished() {
 		return datePublished;
 	}
 	
-	/*
-	 * Setter method to set the serial number 
-	 * for a book.
+	/**
+	  Setter method to assign the serial number 
+	  for a book.
 	 */
 	public void setNumber() {
 		this.number = number;
 	}
 	
-	/*
-	 * Setter method to give the book object
-	 * its title.
+	/**
+	  Setter method to give the book object
+	  its title.
 	 */
 	public void setName() {
 		this.name = name;
 	}
 	
-	/*
-	 * Setter method to show the status of whether
-	 * a book is checked out or not.
+	/**
+	  Setter method to assign the status of whether
+	  a book is checked out or not.
 	 */
 	public void setCheckedOut() {
 		this.checkedOut = checkedOut;
 	}
 	
-	/*
-	 * Setter method to set a book object's 
-	 * published date.
+	/**
+	  Setter method to assign a book object's 
+	  published date.
 	 */
 	public void setDatePublished() {
 		this.datePublished = datePublished;
 	}		
 
-	/*
-	 * This method returns true if the serial numbers
-	 * for the 2 book objects are the same.
+	/**
+	  This method returns true if the serial numbers
+	  for the 2 book objects are the same. The parameter
+	  of type object compares the object to instances
+	  of books to verify that they are type Book object.
 	 */
 	@Override
 	public boolean equals(Object obj){
@@ -107,9 +112,9 @@ public class Book {
 		return false;
 	}
 
-	/*
-	 * Gives the book object a format: 
-	 * Book#10007::Design Patterns::5/30/1996::is available.
+	/**
+	  Gives the book object a format: 
+	  Book#10007::Design Patterns::5/30/1996::is available.
 	 */
 	@Override
 	public String toString() {
