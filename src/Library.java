@@ -15,14 +15,14 @@ public class Library {
 
 	private Book[] books; // array-based implementation of the bag data structure 
 	private int numBooks; // the number of books currently in the bag
-	private int capacity = 4; // is this allowed?
+	private int capacity = 4; 
+	public static int bookNums = 0;
 	
 	/*
 	 * The default constructor called to create an empty book array (a.k.a. library).
 	 */
 	public Library() { 
-		// books = (Book[])new Object[capacity]; // change this number?
-		books = new Book[0];
+		books = new Book[capacity];
 		numBooks = 0;		
 	} 
 	
@@ -30,24 +30,22 @@ public class Library {
 	 * A helper method to find a book within the book array.
 	 */
 	private int find(Book book) { 			
-		int serialNum = 0; // change this?
+		int serialNum = 0;
 		for (int i = 0; i < books.length; i++) 
 		{
 			if (books[i].equals(book)) 
 			{
-				serialNum = Integer.parseInt(books[i].getNumber()); // different way to convert string to int?
+				serialNum = Integer.parseInt(books[i].getNumber());
 				return serialNum;
 			}
 		}
-		return serialNum; // change this?
+		return serialNum;
 	} 
 	
 	/*
 	 * A helper method that helps grow the book array by a capacity of 4.
 	 */
-	private void grow() { 
-		//Book[] a = new Book[1];
-		//int i = 0;		
+	private void grow() { 	
 		Book[] temp = new Book[books.length + 4];
 		for (int i = 0; i < books.length; i++) 
 		{ 
@@ -63,32 +61,14 @@ public class Library {
 	 * books in our array.
 	 */
 	public void add(Book book) { 
-		int bookNum = 10001;	
-		if (books.length == numBooks) { // fix this part? maybe if books.length == numBooks
+		if (bookNums%capacity == 0 && bookNums > 1) {
 			grow();
 		}
-		//if (books[] == null) {
-		//	books[0] == 
-		//}
-		if (books[0] == null) { // CHANGE THIS!!!!
-			books[0] = book;
-			//String num1 = ;		
-			books[0].setNumber(String.valueOf(bookNum));
-			numBooks++;// what???			
-		}
+		this.books[bookNums] = book;
+		this.books[bookNums].setNumber(String.valueOf(bookNums + 10001));
 		
-		for (int i = 0; i < books.length; i++) {
-			if (books[i] != null) {
-				continue;
-			}
-			//bookNum++;
-			if (books[i] == null) {
-				//bookNum++;
-				books[i] = book;
-				books[i].setNumber(String.valueOf(10002));
-				numBooks++;
-			}
-		}
+		bookNums++;
+		numBooks = bookNums;
 	}
 	
 	/*

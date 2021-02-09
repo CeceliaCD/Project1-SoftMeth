@@ -21,6 +21,7 @@ public class Kiosk {
 		Book[] books;
 		int numBooks; //don't know if needed 
 		Book theBook;
+		Library lib = new Library();
 	
 		while (true) {
 			
@@ -35,7 +36,17 @@ public class Kiosk {
 			
 			// all the if statements have a phrase to output rn, i was just testing!
 			if (firstChar == 'A') {
-				//addBook();
+				String name = split[1];
+				Date datePub = new Date(split[2]);
+			
+				if (datePub.isValid() == true) {
+					Book book = new Book(null, name, false, datePub);
+					lib.add(book);
+					System.out.println(name + " added to the library");
+				}
+				else {
+					System.out.println("Invalid Date!");
+				}
 			}
 			
 			if (firstChar == 'R') { 
