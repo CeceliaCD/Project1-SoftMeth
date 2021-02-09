@@ -17,29 +17,29 @@ public class Library {
 	private int numBooks; // the number of books currently in the bag
 	private int capacity = 4; 
 	public static int bookNums = 0;
+	static int serialNum = 0;
 	
 	/**
 	  The default constructor called to create an empty book array (a.k.a. library).
 	 */
 	public Library() { 
-		books = new Book[capacity];
-		numBooks = 0;		
+		this.books = new Book[capacity];
+		this.numBooks = 0;	
+		this.serialNum = 10001;
 	} 
 	
 	/**
 	  A helper method to find a book within the book array.
 	 */
 	private int find(Book book) { 			
-		int serialNum = 0;
 		for (int i = 0; i < books.length; i++) 
 		{
-			if (books[i].equals(book)) 
+			if (books[i].getNumber().equals(book.getNumber())) 
 			{
-				serialNum = Integer.parseInt(books[i].getNumber());
-				return serialNum;
+				return i;
 			}
 		}
-		return serialNum;
+		return -1;
 	} 
 	
 	/**
@@ -64,8 +64,9 @@ public class Library {
 		if (bookNums%capacity == 0 && bookNums > 1) {
 			grow();
 		}
-		this.books[bookNums] = book;
-		this.books[bookNums].setNumber(String.valueOf(bookNums + 10001));
+		books[bookNums] = book;
+		books[bookNums].setNumber(String.valueOf(bookNums + serialNum));
+		books[bookNums].setCheckedOut(false); //the book is available
 		
 		bookNums++;
 		numBooks = bookNums;
@@ -80,24 +81,18 @@ public class Library {
 	 */
 	public boolean remove(Book book) { 
 		//checking if book is in our system via serial number
-		int serialNum = find(book);
-		if(serialNum == 0) 
+		int sNum = find(book);
+		if(sNum == -1) 
 		{
 			return false;
 		}
-
-		Book[] newBooks = new Book[books.length];
 		
-		for(int i=0, j=0; i < books.length; i++) 
+		for(int i = sNum; i < numBooks-1; i++) 
 		{
-			if( Integer.parseInt(books[i].getNumber()) == serialNum) {
-				continue;
-			}else {
-				newBooks[j++] = books[i];
-				numBooks--;
-				return false;
-			}
+			books[i] = books[i+1];
 		}
+		books[numBooks - 1] = null; 
+		numBooks--;
 		return true;
 	}
 	
@@ -110,18 +105,13 @@ public class Library {
 	  not been checked out from the library.
 	 */
 	public boolean checkOut(Book book) { 
+		int serialNumber = find(book);
 		
-		boolean checkingOut = remove(book);
-		
-		//checking if book's serial number is within system
-		//if not then remove will return false
-		//thus we cannot checkout a book that is not in our system
-		if(checkingOut == false) 
-		{
-			book.setCheckedOut(false);
+		if(serialNumber == -1) {
+			return false;
+		}else if(books[serialNumber].getCheckedOut() == true) {
 			return false;
 		}
-		book.setCheckedOut(true);
 		return true;
 	}
 	
@@ -132,18 +122,13 @@ public class Library {
 	  or has not been returned to the library.
 	 */
 	public boolean returns(Book book) { 
-		boolean checkedOut = (checkOut(book) == true) ? true : false;
+		int serialNumber = find(book);
 		
-		//if checkedOut returns false that means user cannot return it
-		if(checkedOut == false) 
-		{
-			book.setCheckedOut(false);
+		if(serialNumber == -1) {
+			return false;
+		}else if(books[serialNumber].getCheckedOut() == false) {
 			return false;
 		}
-		book.setCheckedOut(true);
-
-		add(book);
-		book.setCheckedOut(false);
 		return true;
 	}
 	
@@ -154,7 +139,16 @@ public class Library {
 	  in the order they were placed.
 	 */
 	public void print() {  	//print the list of books in the bag
-		this.books = new Book[numBooks];
+		if(numBooks != 0) {
+			System.out.println("**List of books in the library.");
+			for(int i=0; i < books.length; i++) {
+				System.out.println(books[i]);
+			}
+			System.out.println("**End of list");
+		}else {
+			System.out.println("Library catalog is empty!");
+		}
+		
 	} 
 	
 	
@@ -164,38 +158,52 @@ public class Library {
 	  in ascending order.
 	 */
 	public void printByDate() { 	
-		this.books = new Book[numBooks];
-		Book holdBook;
-		Date date1 = new Date();
-		Date date2 = new Date();
-		
-		for(int i=0; i < books.length; i++)
-		{
-			for(int j=i+1; j< books.length; j++)
+		if(numBooks != 0) {
+			Book holdBook;
+			
+			for(int i=0; i < books.length; i++)
 			{
-				date1= books[i].getDatePublished();
-				date2= books[j].getDatePublished();
-				
-				StringTokenizer dtStr1 = new StringTokenizer(date1.toString(), "/");
-				int month1 = Integer.parseInt(dtStr1.nextToken().trim());
-				int day1 = Integer.parseInt(dtStr1.nextToken().trim());
-				int year1 = Integer.parseInt(dtStr1.nextToken().trim());
-				
-				StringTokenizer dtStr2 = new StringTokenizer(date2.toString(), "/");
-				int month2 = Integer.parseInt(dtStr2.nextToken().trim());
-				int day2 = Integer.parseInt(dtStr2.nextToken().trim());
-				int year2 = Integer.parseInt(dtStr2.nextToken().trim());
-				
-
-				if((month1 > month2 && year1 >= year2) || (month1 == month2 && day1 > day2 && year1 >= year2) 
-						|| (month1 == month2 && day1 == day2 && year1 > year2)) 
+				for(int j=i+1; j< books.length; j++)
 				{
-					holdBook = books[i];
-					books[i] = books[j];
-					books[j] = holdBook;
+					String date1= books[i].getDatePublished().datetoString();
+					String date2= books[j].getDatePublished().datetoString();
+					
+					StringTokenizer dtStr1 = new StringTokenizer(date1, "/");
+					int month1 = Integer.parseInt(dtStr1.nextToken().trim());
+					int day1 = Integer.parseInt(dtStr1.nextToken().trim());
+					int year1 = Integer.parseInt(dtStr1.nextToken().trim());
+					
+					StringTokenizer dtStr2 = new StringTokenizer(date2, "/");
+					int month2 = Integer.parseInt(dtStr2.nextToken().trim());
+					int day2 = Integer.parseInt(dtStr2.nextToken().trim());
+					int year2 = Integer.parseInt(dtStr2.nextToken().trim());
+					
+
+					if(year1 > year2 || (year1 == year2 && month1 > month2) || (year1 == year2 && month1 == month2 && day1 > day2)) 
+					{
+						holdBook = books[i];
+						books[i] = books[j];
+						books[j] = holdBook;
+					}else if(year1 == year2 && month1 == month2 && day1 == day2) {
+						if(books[i].getName().compareTo(books[j].getName()) > 0) 
+						{
+							Book temp = books[i];
+							books[i] = books[j];
+							books[j] = temp;
+						}
+					}
 				}
 			}
+			
+			System.out.println("**List of books by the dates published.");
+			for(int j=0; j < books.length; j++) {
+				System.out.println(books[j]);
+			}
+			System.out.println("**End of list");
+		}else {
+			System.out.println("Bookshelf is empty!");
 		}
+		
 	} 
 	
 	
@@ -205,20 +213,29 @@ public class Library {
 	  numbers in ascending order.
 	 */
 	public void printByNumber() { 
-		this.books = new Book[numBooks];
-		Book holdBook;
-		
-		for(int i=0; i < books.length; i++)
-		{
-			for(int j=i+1; j< books.length; j++) 
+		if(numBooks != 0) {
+			Book holdBook;
+			
+			for(int i=0; i < books.length; i++)
 			{
-				if(Integer.parseInt(books[i].getNumber()) > Integer.parseInt(books[j].getNumber()))
-				{	
-					holdBook = books[i];
-					books[i] = books[j];
-					books[j] = holdBook;	
+				for(int j=i+1; j< books.length; j++) 
+				{
+					if(Integer.parseInt(books[i].getNumber()) > Integer.parseInt(books[j].getNumber()))
+					{	
+						holdBook = books[i];
+						books[i] = books[j];
+						books[j] = holdBook;	
+					}
 				}
 			}
+			
+			System.out.println("**List of books by the book numbers.");
+			for(int k=0; k < books.length; k++) {
+				System.out.println(books[k]);
+			}
+			System.out.println("**End of list");
+		}else {
+			System.out.println("Bookshelf is empty!");
 		}
 	} 
 }

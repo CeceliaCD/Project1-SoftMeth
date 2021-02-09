@@ -154,6 +154,9 @@ public class Date {
 		return true;	
 	}
 	
+	public String datetoString() {
+		return  getMonth() + "/" + getDay() + "/" + getYear();
+	}
 	
 
 	/**

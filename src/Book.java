@@ -14,20 +14,6 @@ public class Book {
 	private String name;
 	private boolean checkedOut;
 	private Date datePublished;
-
-	/**
-	  A constructor that helps with giving a book
-	  object its values. As a result when we declare 
-	  a new book object, we can set the book's serial
-	  number, title, whether it has been checked out or not,
-	  and the date in which it was published.
-	 */
-	public Book(String number, String name, boolean checkedOut, Date datePublished) {
-		this.number = number;
-		this.name = name;
-		this.checkedOut = checkedOut;
-		this.datePublished = datePublished;
-	}
 	
 	/**
 	  Getter method to obtain a book's serial number.
@@ -63,32 +49,32 @@ public class Book {
 	  Setter method to assign the serial number 
 	  for a book.
 	 */
-	public void setNumber() {
-		this.number = number;
+	public void setNumber(String num) {
+		this.number = num;
 	}
 	
 	/**
 	  Setter method to give the book object
 	  its title.
 	 */
-	public void setName() {
-		this.name = name;
+	public void setName(String title) {
+		this.name = title;
 	}
 	
 	/**
 	  Setter method to assign the status of whether
 	  a book is checked out or not.
 	 */
-	public void setCheckedOut() {
-		this.checkedOut = checkedOut;
+	public void setCheckedOut(boolean checkout) {
+		this.checkedOut = checkout;
 	}
 	
 	/**
 	  Setter method to assign a book object's 
 	  published date.
 	 */
-	public void setDatePublished() {
-		this.datePublished = datePublished;
+	public void setDatePublished(Date datePub) {
+		this.datePublished = datePub;
 	}		
 
 	/**
@@ -118,8 +104,15 @@ public class Book {
 	 */
 	@Override
 	public String toString() {
-		return "Book#" + number +"::" + name + "::" + datePublished + "::" + checkedOut;
-		// have checkedOut = "is available" or "is not available"
+		String bookOutput = "";
+		
+		if(getCheckedOut() == true) {
+			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + ":: is checked out.";
+		}else {
+			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + ":: is available.";
+		}
+		
+		return bookOutput;
 	}
 
 }

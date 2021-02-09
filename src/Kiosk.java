@@ -5,7 +5,6 @@
   @Cecelia Chollette-Dickson
 */
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Kiosk {
 
@@ -19,11 +18,7 @@ public class Kiosk {
 	public void run() { 
 		
 		Scanner input = new Scanner(System.in);
-		Book[] books;
-		int numBooks; //don't know if needed 
 		Library lib = new Library();
-		String serialNum;
-		Book theBook;
 	
 		while (true) {
 			
@@ -31,119 +26,97 @@ public class Kiosk {
 			char firstChar = choice.charAt(0);
 			
 	
-			//String delim = ",";
-			//StringTokenizer st = new StringTokenizer(choice, delim);
-			String[] split = choice.split(",");
-			//String name = split[1].setName();
+			if(choice.equals("")) {
+				continue;
+			}
 			
-			// all the if statements have a phrase to output rn, i was just testing!
 			if (firstChar == 'A') {
-				String name = split[1];
-				Date datePub = new Date(split[2]);
-			
-				if (datePub.isValid() == true) {
-					Book book = new Book(null, name, false, datePub);
-					lib.add(book);
-					System.out.println(name + " added to the library");
-				}
-				else {
-					System.out.println("Invalid Date!");
-				}
-			}
-			
-			if (firstChar == 'R') { 
-				serialNum = input.nextLine();
-				theBook.setNumber(Integer.parseInt(serialNum));
+				try {
+					String[] split = choice.split(",");
+					String name = split[1];
+					Date datePub = new Date(split[2]);
 				
-				lib.remove(theBook);
-				//hopefully doesn't give prob for calling class, since under same package
-				if(lib.remove(theBook)) {
-					System.out.printf("Book#%s %s\n", serialNum, "removed.");
-				}else {
-					System.out.println("Unable to remove, the library does not have this book.");
+					if (datePub.isValid() == true) {
+						Book book = new Book();
+						book.setName(name);
+						book.setDatePublished(datePub);
+						lib.add(book);
+						System.out.println(book.getName() + " added to the library.");
+					}
+					else {
+						System.out.println("Invalid Date!");
+					}
 				}
-			}
-			
-			if (firstChar == 'O') {
-				serialNum = input.nextLine();
-				theBook.setNumber(Integer.parseInt(serialNum));
-				
-				lib.checkOut(theBook);
-				if(lib.checkOut(theBook)) {
-					System.out.printf("You’ve checked out Book#%s %s\n", serialNum, ". Enjoy!");
-				}else {
-					System.out.printf("Book#%s %s\n", serialNum, "is not available.");
+				catch(Exception e) {
+					System.out.println("Invalid command!");
 				}
-			}
-			
-			if (firstChar == 'I') {
-				serialNum = input.nextLine();
-				theBook.setNumber(Integer.parseInt(serialNum));
 				
-				lib.returns(theBook);
-				if(lib.returns(theBook)) {
-					System.out.printf("Book#  %s %s\n", serialNum, "return has completed. Thanks!");
-				}else {
-					System.out.println("Unable to return Book#" + serialNum + ".");
-				}
-			}
-			
-			if (choice.equals("PA")) {
-				books = new Book[numBooks];
-				
-				lib.print();
+			}else if (firstChar == 'R') { 
+				try {
+					String serialNum = choice.substring(choice.indexOf(',')+1);
+					Book bookRemove = new Book();
+					bookRemove.setNumber(serialNum);
 					
-				System.out.println("**List of books in the library.");
-				for(int i=0; i < books.length; i++) {
-					System.out.println(books[i]);
+					lib.remove(bookRemove);
+					System.out.println("Book#" + serialNum + " removed.");
+					if(lib.remove(bookRemove) == false) {
+						System.out.println("Unable to remove, the library does not have this book.");
+					}
+					
 				}
-				System.out.println("**End of list");
+				catch(Exception e) {
+					System.out.println("Invalid command!");
+				}
 				
-				if(books == null) {
-					System.out.println("Library catalog is empty!");
+			}else if (firstChar == 'O') {
+				try {
+					String serialNum1 = choice.substring(choice.indexOf(',')+1);
+					Book bookCheckout = new Book();
+					bookCheckout.setNumber(serialNum1);
+					
+					lib.checkOut(bookCheckout);
+					if(lib.checkOut(bookCheckout)) {
+						System.out.println("You’ve checked out Book#" + serialNum1 + ". Enjoy!");
+					}else {
+						System.out.println("Book#" + serialNum1 + " is not available.");
+					}
 				}
-			}
-			
-			if (choice.equals("PD")) {
-				books = new Book[numBooks];
+				catch(Exception e) {
+					System.out.println("Invalid command!");
+				}
+			}else if (firstChar == 'I') {
+				try {
+					String serialNum2 = choice.substring(choice.indexOf(',')+1);
+					Book bookReturn = new Book();
+					bookReturn.setNumber(serialNum2);
+					
+					lib.returns(bookReturn);
+					if(lib.returns(bookReturn)) {
+						System.out.println("Book#" + serialNum2 + " return has completed. Thanks!");
+					}else {
+						System.out.println("Unable to return Book#" + serialNum2 + ".");
+					}
+				}
+				catch(Exception e) {
+					System.out.println("Invalid command!");
+				}
+	
+			}else if (choice.equals("PA")) {
+				
+				lib.print();		
+			}else if (choice.equals("PD")) {
 				
 				lib.printByDate();
-				
-				System.out.println("**List of books by the dates published.");
-				for(int j=0; j < books.length; j++) {
-					System.out.println(books[j]);
-				}
-				System.out.println("**End of list");
-				
-				if(books == null) {
-					System.out.println("Bookshelf is empty!");
-				}
-				
-			}
-			
-			if (choice.equals("PN")) {
-				books = new Book[numBooks];
+			}else if (choice.equals("PN")) {
 				
 				lib.printByNumber();
-					
-				System.out.println("**List of books by the book numbers.");
-				for(int k=0; k < books.length; k++) {
-					System.out.println(books[k]);
-				}
-				System.out.println("**End of list");
-				
-				if(books == null) {
-					System.out.println("Bookshelf is empty!");
-				}
-			
-			}
-			
-			if (firstChar == 'Q') {
+			}else if (firstChar == 'Q') {
 				System.out.println("Kiosk session ended.");
-				System.exit(0);
+				input.close();
+				break;
+			}else{
+				System.out.println("Invalid command!");
 			}
-			
-			System.out.println("Invalid command!");
 		}
 	}
 
