@@ -107,9 +107,9 @@ public class Book {
 		String bookOutput = "";
 		
 		if(getCheckedOut() == true) {
-			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + ":: is checked out.";
+			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + "::is checked out.";
 		}else {
-			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + ":: is available.";
+			bookOutput = "Book#" + getNumber() +"::" + getName() + "::" + getDatePublished().datetoString() + "::is available.";
 		}
 		
 		return bookOutput;
