@@ -51,6 +51,10 @@ public class Kiosk {
 				}
 				
 			}else if (firstChar == 'R') { 
+				if (choice.charAt(1) != ',') {
+					System.out.println("Invalid command!");
+				}
+				else {
 				String serialNum = choice.substring(choice.indexOf(',')+1);
 				Book bookRemove = new Book();
 				bookRemove.setNumber(serialNum);
@@ -63,8 +67,13 @@ public class Kiosk {
 				else {
 					System.out.println("Unable to remove, the library does not have this book.");
 				}
+				}
 				
 			}else if (firstChar == 'O') {
+				if (choice.charAt(1) != ',') {
+					System.out.println("Invalid command!");
+				}
+				else {
 				try {
 					String serialNum1 = choice.substring(choice.indexOf(',')+1);
 					Book bookCheckout = new Book();
@@ -79,7 +88,12 @@ public class Kiosk {
 				catch(Exception e) {
 					System.out.println("Invalid command!");
 				}
+				}
 			}else if (firstChar == 'I') {
+				if (choice.charAt(1) != ',') {
+					System.out.println("Invalid command!");
+				}
+				else {
 				try {
 					String serialNum2 = choice.substring(choice.indexOf(',')+1);
 					Book bookReturn = new Book();
@@ -93,6 +107,7 @@ public class Kiosk {
 				}
 				catch(Exception e) {
 					System.out.println("Invalid command!");
+				}
 				}
 	
 			}else if (choice.equals("PA")) {
