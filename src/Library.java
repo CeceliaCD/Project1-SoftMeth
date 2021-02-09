@@ -76,7 +76,6 @@ public class Library {
 	}
 	
 	/**
-<<<<<<< HEAD
 	This method permanently removes a book from our book array.
 	If a book has already been removed from the library, it cannot be
 	removed again. It also decrements the variable representing
@@ -84,23 +83,9 @@ public class Library {
 	@param Book object being removed from library
 	@return boolean to true if the book can be removed, false otherwise
 	*/
-	public boolean remove(Book book) { 
-		
-		int sNumIndex = find(book); //Integer value of book
-		if(sNumIndex == -1) 
-		{
-=======
-	  This method permanently removes a book from our book array.
-	  If a book has already been removed from the library, it cannot be
-	  removed again. It also decrements the variable representing
-	  the number of books contained in the array. 
-	  @param Book object being removed from library
-	  @return boolean to true if the book can be removed, false otherwise
-	 */
-	public boolean remove(Book book) { 		
+	public boolean remove(Book book) {
 		int sNum = find(book);
 		if (sNum == -1) {
->>>>>>> fd8fb0e2d75533edc89eab255c2e962b13d88a09
 			return false;
 		}
 
