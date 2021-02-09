@@ -121,13 +121,15 @@ public class Library {
 	  @return boolean true if not yet checked out, false otherwise
 	 */
 	public boolean checkOut(Book book) { 
-		int serialNumber = find(book);
+		int serialNumberindex = find(book);
 		
-		if(serialNumber == -1) {
+		if(serialNumberindex == -1) {
 			return false;
-		}else if(books[serialNumber].getCheckedOut() == true) {
+		}else if(books[serialNumberindex].getCheckedOut() == true) {
+			books[serialNumberindex].setCheckedOut(true);
 			return false;
 		}
+		books[serialNumberindex].setCheckedOut(true);
 		return true;
 	}
 	
@@ -139,13 +141,15 @@ public class Library {
 	  @return boolean true if it is being returned, false if it is still available
 	 */
 	public boolean returns(Book book) { 
-		int serialNumber = find(book);
+		int serialNumberindex = find(book);
 		
-		if(serialNumber == -1) {
+		if(serialNumberindex == -1) {
 			return false;
-		}else if(books[serialNumber].getCheckedOut() == false) {
+		}else if(books[serialNumberindex].getCheckedOut() == false) {
+			books[serialNumberindex].setCheckedOut(false);
 			return false;
 		}
+		books[serialNumberindex].setCheckedOut(false);
 		return true;
 	}
 	
