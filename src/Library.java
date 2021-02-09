@@ -163,7 +163,9 @@ public class Library {
 		if(numBooks != 0) {
 			System.out.println("**List of books in the library.");
 			for(int i=0; i < books.length; i++) {
-				System.out.println(books[i]);
+				if (books[i] != null) {
+					System.out.println(books[i]);
+				}
 			}
 			System.out.println("**End of list");
 		}else {
