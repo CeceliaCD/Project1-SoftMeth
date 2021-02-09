@@ -34,6 +34,9 @@ public class Library {
 	private int find(Book book) { 
 		for (int i = 0; i < books.length; i++) 
 		{
+			if (this.books[i] == null) { // new code
+				return -1; // new code
+			}
 			if (books[i].getNumber().equals(book.getNumber())) 
 			{
 				return i;
