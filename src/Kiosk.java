@@ -1,5 +1,6 @@
 /**
-  The Kiosk class is for processing the command lines from the console.
+  The Kiosk class is for processing the command lines from 
+  the console and giving the required output back to the user.
   @Nida Ansari
   @Cecelia Chollette-Dickson
 */
