@@ -33,8 +33,8 @@ public class Library {
 	private int find(Book book) { 
 		for (int i = 0; i < books.length; i++) 
 		{
-			if (this.books[i] == null) { // new code
-				return -1; // new code
+			if (this.books[i] == null) { 
+				return -1;
 			}
 			if (books[i].getNumber().equals(book.getNumber())) 
 			{
@@ -76,6 +76,7 @@ public class Library {
 	}
 	
 	/**
+<<<<<<< HEAD
 	This method permanently removes a book from our book array.
 	If a book has already been removed from the library, it cannot be
 	removed again. It also decrements the variable representing
@@ -88,26 +89,27 @@ public class Library {
 		int sNumIndex = find(book); //Integer value of book
 		if(sNumIndex == -1) 
 		{
+=======
+	  This method permanently removes a book from our book array.
+	  If a book has already been removed from the library, it cannot be
+	  removed again. It also decrements the variable representing
+	  the number of books contained in the array. 
+	  @param Book object being removed from library
+	  @return boolean to true if the book can be removed, false otherwise
+	 */
+	public boolean remove(Book book) { 		
+		int sNum = find(book);
+		if (sNum == -1) {
+>>>>>>> fd8fb0e2d75533edc89eab255c2e962b13d88a09
 			return false;
 		}
-		
-		if(sNumIndex < books.length) 
-		{
-			for(int i = 0; i < numBooks-1; i++) 
-			{
-				if(Integer.parseInt(books[i].getNumber()) == Integer.parseInt(books[sNumIndex].getNumber()))
-				{
-					books[i] = books[i+1];	
-				}	
-			}
-			if(numBooks == books.length)  //should help with null pointer exception error
-			{
-				books[books.length-1] = null;
-			}
-			numBooks--;
-			return true;	
+
+		for (int i = sNum; i < numBooks - 1; i++) {
+			books[i] = books[i + 1];
 		}
-		return false;	
+		books[numBooks - 1] = null;
+		numBooks--;
+		return true;
 	}
 	
 	/**
