@@ -33,7 +33,8 @@ public class Library {
 	private int find(Book book) { 
 		for (int i = 0; i < books.length; i++) 
 		{
-			if (this.books[i] == null) { 
+			if (this.books[i] == null) 
+			{
 				return -1;
 			}
 			if (books[i].getNumber().equals(book.getNumber())) 
@@ -64,7 +65,8 @@ public class Library {
 	@param Book object being added into library
 	*/
 	public void add(Book book) { 
-		if (bookNums%CAPACITY == 0 && bookNums > 1) {
+		if (bookNums%CAPACITY == 0 && bookNums > 1) 
+		{
 			grow();
 		}
 		books[bookNums] = book;
@@ -85,11 +87,13 @@ public class Library {
 	*/
 	public boolean remove(Book book) {
 		int sNum = find(book);
-		if (sNum == -1) {
+		if (sNum == -1) 
+		{
 			return false;
 		}
 
-		for (int i = sNum; i < numBooks - 1; i++) {
+		for (int i = sNum; i < numBooks - 1; i++) 
+		{
 			books[i] = books[i + 1];
 		}
 		books[numBooks - 1] = null;
