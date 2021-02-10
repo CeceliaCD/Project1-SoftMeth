@@ -1,3 +1,4 @@
+import java.util.StringTokenizer;
 /**
 The library class consists of methods that are called
 within other methods and also methods that commit the action
@@ -8,15 +9,12 @@ checkout books from the library, return books, and print out the current
 list of books in the library in the order they came, by day or by serial number.
 @author Nida Ansari, Cecelia Chollette-Dickson
 */
-import java.util.StringTokenizer;
-
 public class Library {
-
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
 	private int CAPACITY = 4; 
 	public static int bookNums = 0;
-	public int serialNum = 0;
+	public static int serialNum = 0;
 	
 	/**
 	The default constructor called to create an empty book array (a.k.a. library).
@@ -29,6 +27,8 @@ public class Library {
 	
 	/**
 	A helper method to find a book within the book array.
+	@param book of type Book to find a book within the book array.
+	@return the location of the book in the book array.
 	*/
 	private int find(Book book) { 
 		for (int i = 0; i < books.length; i++) 
@@ -62,7 +62,7 @@ public class Library {
 	and also gives that book a serial number of 10001 or greater.
 	It also increments the variable that represents the number of
 	books in our array.
-	@param Book object being added into library
+	@param book of type Book being added into library
 	*/
 	public void add(Book book) { 
 		if (bookNums%CAPACITY == 0 && bookNums > 1) 
@@ -82,7 +82,7 @@ public class Library {
 	If a book has already been removed from the library, it cannot be
 	removed again. It also decrements the variable representing
 	the number of books contained in the array. 
-	@param Book object being removed from library
+	@param book of type Book being removed from library
 	@return boolean to true if the book can be removed, false otherwise
 	*/
 	public boolean remove(Book book) {
@@ -107,7 +107,7 @@ public class Library {
 	in the library can be taken and also once a book is taken, it 
 	cannot be taken again. However, once it is returned it can be 
 	taken.  
-	@param Book object whose status we must change to not available
+	@param book of type Book whose status we must change to not available
 	@return boolean true if successfully being checked out, false otherwise
 	*/
 	public boolean checkOut(Book book) { 
@@ -128,7 +128,7 @@ public class Library {
 	Allows the user to return a book after they have checked it out.
 	Similar to add, and actually calls add to have book back in
 	the library. 
-	@param Book object whose status we want to change to is available
+	@param book of type Book whose status we want to change to is available
 	@return boolean true if it is being successfully returned, false if it's still available
 	*/
 	public boolean returns(Book book) { 
