@@ -14,7 +14,7 @@ public class Library {
 
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
-	private int capacity = 4; 
+	private int CAPACITY = 4; 
 	public static int bookNums = 0;
 	public int serialNum = 0;
 	
@@ -22,7 +22,7 @@ public class Library {
 	The default constructor called to create an empty book array (a.k.a. library).
 	*/
 	public Library() { 
-		this.books = new Book[capacity];
+		this.books = new Book[CAPACITY];
 		this.numBooks = 0;	
 		this.serialNum = 10001;
 	} 
@@ -64,7 +64,7 @@ public class Library {
 	@param Book object being added into library
 	*/
 	public void add(Book book) { 
-		if (bookNums%capacity == 0 && bookNums > 1) {
+		if (bookNums%CAPACITY == 0 && bookNums > 1) {
 			grow();
 		}
 		books[bookNums] = book;
