@@ -28,7 +28,7 @@ public class Kiosk {
 			if(choice.equals("")) {
 				continue;
 			}
-			
+			// exectutes function to add a book
 			if (firstChar == 'A') {
 				try {
 					String[] split = choice.split(",");
@@ -49,7 +49,7 @@ public class Kiosk {
 				catch(Exception e) {
 					System.out.println("Invalid command!");
 				}
-				
+			// executes function to remove a book	
 			}else if (firstChar == 'R') { 
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
@@ -68,7 +68,7 @@ public class Kiosk {
 					System.out.println("Unable to remove, the library does not have this book.");
 				}
 				}
-				
+			// executes function to check out a book	
 			}else if (firstChar == 'O') {
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
@@ -89,6 +89,7 @@ public class Kiosk {
 					System.out.println("Invalid command!");
 				}
 				}
+			// executes function to return a book
 			}else if (firstChar == 'I') {
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
@@ -109,17 +110,17 @@ public class Kiosk {
 					System.out.println("Invalid command!");
 				}
 				}
-	
-			}else if (choice.equals("PA")) {
-				
-				lib.print();		
-			}else if (choice.equals("PD")) {
-				
+			
+			}else if (choice.equals("PA")) { // displays the list of books to the console with the current sequence				
+				lib.print();
+			
+			}else if (choice.equals("PD")) { // displays the list of books by the dates published in ascending order	
 				lib.printByDate();
-			}else if (choice.equals("PN")) {
-				
+			
+			}else if (choice.equals("PN")) { // displays the list of books by the book numbers in ascending order	
 				lib.printByNumber();
-			}else if (firstChar == 'Q') {
+			
+			}else if (firstChar == 'Q') { // executes the function to stop the program
 				System.out.println("Kiosk session ended.");
 				input.close();
 				break;
