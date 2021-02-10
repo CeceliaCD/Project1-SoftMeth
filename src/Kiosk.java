@@ -1,7 +1,7 @@
 /**
 The Kiosk class is for processing the command lines from 
 the console and giving the required output back to the user.
-@Nida Ansari, Cecelia Chollette-Dickson
+@author Nida Ansari, Cecelia Chollette-Dickson
 */
 import java.util.Scanner;
 

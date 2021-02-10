@@ -2,7 +2,7 @@
 The date class helps with verifying that 
 a given date is accurate (not too old and not an
 impossibly made up one).
-@Nida Ansari, Cecelia Chollette-Dickson
+@author Nida Ansari, Cecelia Chollette-Dickson
 */
 import java.util.Calendar;
 import java.util.StringTokenizer;

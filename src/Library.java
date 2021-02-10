@@ -6,7 +6,7 @@ to add books to a library, find books in a library via their serial
 number, increase the library's size, remove books from the library,
 checkout books from the library, return books, and print out the current
 list of books in the library in the order they came, by day or by serial number.
-@Nida Ansari, Cecelia Chollette-Dickson
+@author Nida Ansari, Cecelia Chollette-Dickson
 */
 import java.util.StringTokenizer;
 

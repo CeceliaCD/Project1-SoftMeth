@@ -5,7 +5,7 @@ its serial number, name, published date, and if
 it is checked out. We also override the string so
 so that the previously mentioned components are 
 formatted a certain way when printed.
-@Nida Ansari, Cecelia Chollette-Dickson
+@author Nida Ansari, Cecelia Chollette-Dickson
 */
 public class Book {
 
