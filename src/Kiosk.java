@@ -28,8 +28,8 @@ public class Kiosk {
 			if(choice.equals("")) {
 				continue;
 			}
-			// exectutes function to add a book
-			if (firstChar == 'A') {
+			
+			if (firstChar == 'A') { // exectutes function to add a book
 				try {
 					String[] split = choice.split(",");
 					String name = split[1];
@@ -49,8 +49,8 @@ public class Kiosk {
 				catch(Exception e) {
 					System.out.println("Invalid command!");
 				}
-			// executes function to remove a book	
-			}else if (firstChar == 'R') { 
+			
+			}else if (firstChar == 'R') { // executes function to remove a book	
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
 				}
@@ -68,8 +68,8 @@ public class Kiosk {
 					System.out.println("Unable to remove, the library does not have this book.");
 				}
 				}
-			// executes function to check out a book	
-			}else if (firstChar == 'O') {
+			
+			}else if (firstChar == 'O') { // executes function to check out a book	
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
 				}
@@ -89,8 +89,8 @@ public class Kiosk {
 					System.out.println("Invalid command!");
 				}
 				}
-			// executes function to return a book
-			}else if (firstChar == 'I') {
+			
+			}else if (firstChar == 'I') { // executes function to return a book
 				if (choice.charAt(1) != ',') {
 					System.out.println("Invalid command!");
 				}
