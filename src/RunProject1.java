@@ -9,7 +9,7 @@ public class RunProject1 {
 	/**
 	Runs the entire library program, with all its files. In
 	other words, this is our driver.
-	@param args
+	@param args array of String argument
 	*/
 	public static void main(String[] args) {
 		new Kiosk().run();
