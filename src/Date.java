@@ -1,12 +1,11 @@
+import java.util.Calendar;
+import java.util.StringTokenizer;
 /**
 The date class helps with verifying that 
 a given date is accurate (not too old and not an
 impossibly made up one).
 @author Nida Ansari, Cecelia Chollette-Dickson
 */
-import java.util.Calendar;
-import java.util.StringTokenizer;
-
 public class Date {
 	
 	private int year;
@@ -16,7 +15,8 @@ public class Date {
 	
 	/**
 	This method is taking a string in mm/dd/yyyy and creates
-	a Date object that the user can input in a similar format. 
+	a Date object that the user can input in a similar format.
+	@param date of type String to create Date object 
 	*/
 	public Date(String date) {
 		StringTokenizer dt = new StringTokenizer(date, "/");
@@ -29,7 +29,7 @@ public class Date {
 	/**
 	This constructor returns today’s date and also
 	helps with checking if the given published date of 
-	a book is sny later than the current (which shouldn't
+	a book is any later than the current (which shouldn't
 	be possible).
 	*/
 	public Date() { 
@@ -172,6 +172,7 @@ public class Date {
 	and its respective boolean, there should either
 	be an output that prints the given date or prints
 	the string literal "Invalid Date!"
+	@param args array of String argument
 	*/ 
 	public static void main(String[] args) {
 		Date todaysDate = new Date();
