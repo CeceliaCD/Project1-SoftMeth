@@ -51,7 +51,7 @@ public class Book {
 	/**
 	Setter method to assign the serial number 
 	for a book.
-	@param a string number to be given to a book object
+	@param num of type string to be given to a book object
 	*/
 	public void setNumber(String num) {
 		this.number = num;
@@ -60,7 +60,7 @@ public class Book {
 	/**
 	Setter method to give the book object
 	its title.
-	@param a title to be given to a book object
+	@param title to be given to a book object
 	*/
 	public void setName(String title) {
 		this.name = title;
@@ -69,7 +69,7 @@ public class Book {
 	/**
 	Setter method to assign the status of whether
 	a book is checked out or not.
-	@param the boolean status of whether a book will be available or not
+	@param checkout of type boolean to check status of whether a book will be available or not
 	*/
 	public void setCheckedOut(boolean checkout) {
 		this.checkedOut = checkout;
@@ -78,7 +78,7 @@ public class Book {
 	/**
 	Setter method to assign a book object's 
 	published date.
-	@param the date in which a given book was published
+	@param datePub of type date in which a given book was published
 	*/
 	public void setDatePublished(Date datePub) {
 		this.datePublished = datePub;
@@ -89,7 +89,7 @@ public class Book {
 	for the 2 book objects are the same. The parameter
 	of type object compares the object to instances
 	of books to verify that they are type Book object.
-	@param the object obj checks if our object is of type Book
+	@param obj of type object checks if our object is of type Book
 	@return true if it is a book variable, false otherwise
 	*/
 	@Override
